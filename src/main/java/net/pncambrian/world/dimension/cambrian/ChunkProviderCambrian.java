@@ -1,14 +1,17 @@
 package net.pncambrian.world.dimension.cambrian;
 
 import net.lepidodendron.block.*;
+import net.lepidodendron.util.EnumBiomeTypeCambrian;
 import net.lepidodendron.world.biome.ChunkGenSpawner;
-import net.lepidodendron.world.gen.WorldGenPrecambrianLakes;
+import net.lepidodendron.world.biome.cambrian.BiomeCambrian;
+import net.lepidodendron.world.gen.*;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.BlockSand;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -17,8 +20,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.*;
-import net.pncambrian.world.biome.cambrian.BiomeCambrianBiome;
-import net.pncambrian.world.biome.cambrian.BiomeCambrianEstuary;
+import net.pncambrian.world.biome.cambrian.*;
 
 import java.util.List;
 import java.util.Random;
@@ -32,7 +34,7 @@ public class ChunkProviderCambrian implements IChunkGenerator {
 
     public static final IBlockState AIR = Blocks.AIR.getDefaultState();
     public static final IBlockState BEDROCK = Blocks.BEDROCK.getDefaultState();
-    public static final int SEALEVEL = 57;
+    public static final int SEALEVEL = 63;
     public final Random random;
     private NoiseGeneratorOctaves perlin1;
     private NoiseGeneratorOctaves perlin2;
@@ -56,7 +58,18 @@ public class ChunkProviderCambrian implements IChunkGenerator {
         caveGenerator = new MapGenCaves() {
             @Override
             protected boolean canReplaceBlock(IBlockState a, IBlockState b) {
-                if (a.getBlock() == STONE.getBlock())
+                if (a.getBlock() == STONE.getBlock()
+                        || a.getBlock() == BlockVolcanicAsh.block
+                        || a.getBlock() == BlockVolcanicAshLight.block
+                        || a.getBlock() == BlockCoarseSandyDirt.block
+                        || a.getBlock() == BlockCoarseSandyDirtWhite.block
+                        || a.getBlock() == BlockSandMicrobial.block
+                        || a.getBlock() == Blocks.COBBLESTONE
+                        || a.getBlock() == BlockLavaRock.block
+                        || a.getBlock() == BlockStoneScoria.block
+                        || a.getBlock() == BlockStonePorphyry.block
+                        || a.getBlock() == BlockToxicMud.block
+                )
                     return true;
                 return super.canReplaceBlock(a, b);
             }
@@ -67,7 +80,18 @@ public class ChunkProviderCambrian implements IChunkGenerator {
                 Biome biome = world.getBiome(new BlockPos(x + chunkX * 16, 0, z + chunkZ * 16));
                 IBlockState state = data.getBlockState(x, y, z);
                 if (state.getBlock() == STONE.getBlock() || state.getBlock() == biome.topBlock.getBlock()
-                        || state.getBlock() == biome.fillerBlock.getBlock()) {
+                        || state.getBlock() == biome.fillerBlock.getBlock()
+                        || state.getBlock() == BlockVolcanicAsh.block
+                        || state.getBlock() == BlockVolcanicAshLight.block
+                        || state.getBlock() == BlockCoarseSandyDirt.block
+                        || state.getBlock() == BlockCoarseSandyDirtWhite.block
+                        || state.getBlock() == BlockSandMicrobial.block
+                        || state.getBlock() == Blocks.COBBLESTONE
+                        || state.getBlock() == BlockLavaRock.block
+                        || state.getBlock() == BlockStoneScoria.block
+                        || state.getBlock() == BlockStonePorphyry.block
+                        || state.getBlock() == BlockToxicMud.block
+                ) {
                     if (y - 1 < 10) {
                         data.setBlockState(x, y, z, FLOWING_LAVA);
                     } else {
@@ -124,14 +148,37 @@ public class ChunkProviderCambrian implements IChunkGenerator {
         long l = this.random.nextLong() / 2 * 2 + 1;
         this.random.setSeed((long) x * k + (long) z * l ^ this.world.getSeed());
         net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(true, this, this.world, this.random, x, z, false);
-        if (this.random.nextInt(4) == 0)
-            if (net.minecraftforge.event.terraingen.TerrainGen.populate(this, this.world, this.random, x, z, false,
-                    net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.LAKE)) {
-                int i1 = this.random.nextInt(16) + 8;
-                int j1 = this.random.nextInt(256);
-                int k1 = this.random.nextInt(16) + 8;
-                (new WorldGenPrecambrianLakes(Blocks.LAVA)).generate(this.world, this.random, blockpos.add(i1, j1, k1));
+        if (biome instanceof BiomeCambrian) {
+            if (((BiomeCambrian) biome).getBiomeType() == EnumBiomeTypeCambrian.BarrenLand) {
+                if (this.random.nextInt(18) == 0)
+                    if (net.minecraftforge.event.terraingen.TerrainGen.populate(this, this.world, this.random, x, z, false,
+                            net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.LAKE)) {
+                        int i1 = this.random.nextInt(16) + 8;
+                        int j1 = this.random.nextInt(256);
+                        int k1 = this.random.nextInt(16) + 8;
+                        (new WorldGenPrecambrianLakes(Blocks.LAVA)).generate(this.world, this.random, blockpos.add(i1, j1, k1));
+                    }
             }
+            else if (((BiomeCambrian) biome).getBiomeType() == EnumBiomeTypeCambrian.Estuary) {
+                for (int lake = 0; lake < 12; ++lake) {
+                    if (net.minecraftforge.event.terraingen.TerrainGen.populate(this, this.world, this.random, x, z, false,
+                            net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.LAKE)) {
+                        int i1 = this.random.nextInt(16) + 8;
+                        int j1 = this.random.nextInt(256);
+                        int k1 = this.random.nextInt(16) + 8;
+                        (new WorldGenCambrianLakesFlat(Blocks.WATER)).generate(this.world, this.random, blockpos.add(i1, j1, k1));
+                    }
+                }
+            }
+            else if (this.random.nextInt(4) == 0 && ((BiomeCambrian) biome).getBiomeType() == EnumBiomeTypeCambrian.Moist)
+                if (net.minecraftforge.event.terraingen.TerrainGen.populate(this, this.world, this.random, x, z, false,
+                        net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.LAKE)) {
+                    int i1 = this.random.nextInt(16) + 8;
+                    int j1 = this.random.nextInt(256);
+                    int k1 = this.random.nextInt(16) + 8;
+                    (new WorldGenCambrianLakesFlat(Blocks.WATER)).generate(this.world, this.random, blockpos.add(i1, j1, k1));
+                }
+        }
 
         net.minecraftforge.common.MinecraftForge.EVENT_BUS
                 .post(new net.minecraftforge.event.terraingen.DecorateBiomeEvent.Pre(this.world, this.random, blockpos));
@@ -299,6 +346,22 @@ public class ChunkProviderCambrian implements IChunkGenerator {
                     double d2 = this.limitRegMin[i] / (double) 512;
                     double d3 = this.limitRegMax[i] / (double) 512;
                     double d4 = (this.noiseRegMain[i] / 10.0D + 1.0D) / 2.0D;
+
+                    if (biome == BiomeCambrianEstuary.biome) {
+                        //Flatten these out somewhat:
+                        d4 = 1.0F;
+                        d2 = d4;
+                        d3 = d4;
+                    }
+
+                    if (biome == BiomeCambrianDusty.biome
+                        || biome == BiomeCambrianMoist.biome) {
+                        //Flatten these out somewhat less:
+                        d4 = (2.0F + d4) / 3.0F;
+                        //d2 = d4;
+                        //d3 = d4;
+                    }
+
                     double d5 = MathHelper.clampedLerp(d2, d3, d4) - d1;
                     if (l1 > 29) {
                         double d6 = (double) ((float) (l1 - 29) / 3.0F);
@@ -349,7 +412,12 @@ public class ChunkProviderCambrian implements IChunkGenerator {
                         if (k <= 0) {
                             iblockstate = AIR;
                             iblockstate1 = STONE;
-                        } else if (j1 >= i - 4 && j1 <= i + 1) {
+                        }
+                        else if (j1 <= i + 2 && j1 >= i - 1 && Math.random() > 0.25
+                                && (biome == BiomeCambrianCreekDusty.biome)) {
+                            iblockstate = BlockToxicMud.block.getDefaultState();
+                        }
+                        else if (j1 >= i - 4 && j1 <= i + 1) {
                             iblockstate = biome.topBlock;
                             iblockstate1 = biome.fillerBlock;
                         }
@@ -360,6 +428,82 @@ public class ChunkProviderCambrian implements IChunkGenerator {
                                 iblockstate = FLUID;
                             }
                         }
+
+                        //For the Land biomes, make hills a bit craggy:
+                        if (((BiomeCambrian)biome).getBiomeType() == EnumBiomeTypeCambrian.BarrenLand
+                        ) {
+                            //If it's over 80 blocks then start to fill in more as cobble
+                            //up to 120
+                            int minHeight = 80;
+                            if (j1 >= minHeight) {
+                                int j2 = Math.max(0, 120 - j1);
+                                double stoneFactor = 4 * (double) j2 / (120D - (double) minHeight);
+                                if (Math.random() >= stoneFactor) {
+                                    if (Math.random() > 0.22) {
+                                        iblockstate = Blocks.COBBLESTONE.getDefaultState();
+                                    } else {
+                                        iblockstate = Blocks.GRAVEL.getStateFromMeta(0);
+                                        if (rand.nextInt(8) == 0) {
+                                            iblockstate = Blocks.COBBLESTONE.getDefaultState();
+                                        }
+                                    }
+                                }
+                                if (Math.random() >= stoneFactor) {
+                                    iblockstate1 = Blocks.COBBLESTONE.getDefaultState();
+                                    if (rand.nextInt(8) == 0) {
+                                        iblockstate1 = Blocks.GRAVEL.getDefaultState();
+                                    }
+                                }
+                            }
+                        }
+
+                        //Break up the top layer of Gravelley/Dry biomes
+                        if (((BiomeCambrian)biome).getBiomeType() == EnumBiomeTypeCambrian.Dusty) {
+                            if (rand.nextInt(3) == 0) {
+                                iblockstate = BlockVolcanicAsh.block.getDefaultState();
+                            } else if (rand.nextInt(6) == 0) {
+                                iblockstate = Blocks.GRAVEL.getDefaultState();
+                            } else if (rand.nextInt(6) == 0) {
+                                iblockstate = BlockSandMicrobial.block.getDefaultState();
+                            } else if (rand.nextInt(12) == 0) {
+                                iblockstate = Blocks.COBBLESTONE.getDefaultState();
+                            } else if (rand.nextInt(12) == 0) {
+                                iblockstate = Blocks.STONE.getDefaultState();
+                            } else if ( rand.nextInt(8) == 0) {
+                                iblockstate = BlockCoarseSandyDirtWhite.block.getDefaultState();
+                            }
+                        }
+
+                        if (((BiomeCambrian)biome).getBiomeType() == EnumBiomeTypeCambrian.Ocean) {
+                            if (rand.nextInt(4) == 0) {
+                                iblockstate = BlockSandMicrobial.block.getDefaultState();
+                            } else if (rand.nextInt(12) == 0) {
+                                iblockstate = Blocks.COBBLESTONE.getDefaultState();
+                            } else if (rand.nextInt(8) == 0) {
+                                iblockstate = Blocks.STONE.getDefaultState();
+                            } else if ( rand.nextInt(24) == 0) {
+                                iblockstate = BlockCoarseSandyDirt.block.getDefaultState();
+                            }
+                        }
+
+                        if (((BiomeCambrian)biome).getBiomeType() == EnumBiomeTypeCambrian.Moist) {
+                            if (rand.nextInt(4) == 0) {
+                                iblockstate = BlockSandMicrobial.block.getDefaultState();
+                            } else if (rand.nextInt(12) == 0) {
+                                iblockstate = Blocks.COBBLESTONE.getDefaultState();
+                            } else if (rand.nextInt(8) == 0) {
+                                iblockstate = Blocks.STONE.getDefaultState();
+                            } else if ( rand.nextInt(24) == 0) {
+                                iblockstate = BlockCoarseSandyDirt.block.getDefaultState();
+                            }
+                        }
+
+                        if (((BiomeCambrian)biome).getBiomeType() == EnumBiomeTypeCambrian.Estuary) {
+                            if (rand.nextInt(8) == 0) {
+                                iblockstate = Blocks.GRAVEL.getDefaultState();
+                            }
+                        }
+
                         j = k;
                         if (j1 >= i - 1) {
                             chunkPrimerIn.setBlockState(i1, j1, l, iblockstate);
@@ -368,7 +512,28 @@ public class ChunkProviderCambrian implements IChunkGenerator {
                             iblockstate = AIR;
                             iblockstate1 = STONE;
                             if (j1 < i - 6) {
-                                if (Math.random() > 0.94) {
+                                if (biome == BiomeCambrianSeaReefs.biome
+                                        && rand.nextInt(3) == 0) {
+                                    int s = rand.nextInt(4);
+                                    switch (s) {
+                                        case 0: default:
+                                            chunkPrimerIn.setBlockState(i1, j1, l, BlockArchaeocyatha.block.getDefaultState().withProperty(BlockSpongeReef.FACING, EnumFacing.NORTH));
+                                            break;
+
+                                        case 1:
+                                            chunkPrimerIn.setBlockState(i1, j1, l, BlockArchaeocyatha.block.getDefaultState().withProperty(BlockSpongeReef.FACING, EnumFacing.EAST));
+                                            break;
+
+                                        case 2:
+                                            chunkPrimerIn.setBlockState(i1, j1, l, BlockArchaeocyatha.block.getDefaultState().withProperty(BlockSpongeReef.FACING, EnumFacing.SOUTH));
+                                            break;
+
+                                        case 3:
+                                            chunkPrimerIn.setBlockState(i1, j1, l, BlockArchaeocyatha.block.getDefaultState().withProperty(BlockSpongeReef.FACING, EnumFacing.WEST));
+                                            break;
+                                    }
+                                }
+                                else if (Math.random() > 0.94) {
                                     chunkPrimerIn.setBlockState(i1, j1, l, BlockBacterialLayer.block.getDefaultState());
                                 }
                                 else {
@@ -385,7 +550,7 @@ public class ChunkProviderCambrian implements IChunkGenerator {
                                         }
                                     } else {
                                         if (Math.random() > 0.25) {
-                                            if (Math.random() > 0.92) {
+                                            if (Math.random() > 0.92 && ((BiomeCambrian)biome).getBiomeType() == EnumBiomeTypeCambrian.Ocean)  {
                                                 chunkPrimerIn.setBlockState(i1, j1, l, BlockArchaeocyatha.block.getDefaultState());
                                             }
                                             else {
@@ -409,7 +574,28 @@ public class ChunkProviderCambrian implements IChunkGenerator {
                                 }
                             }
                             else {
-                                if (Math.random() > 0.9) {
+                                if (biome == BiomeCambrianSeaReefs.biome
+                                        && rand.nextInt(3) == 0) {
+                                    int s = rand.nextInt(4);
+                                    switch (s) {
+                                        case 0: default:
+                                            chunkPrimerIn.setBlockState(i1, j1, l, BlockArchaeocyatha.block.getDefaultState().withProperty(BlockArchaeocyatha.FACING, EnumFacing.NORTH));
+                                            break;
+
+                                        case 1:
+                                            chunkPrimerIn.setBlockState(i1, j1, l, BlockArchaeocyatha.block.getDefaultState().withProperty(BlockArchaeocyatha.FACING, EnumFacing.EAST));
+                                            break;
+
+                                        case 2:
+                                            chunkPrimerIn.setBlockState(i1, j1, l, BlockArchaeocyatha.block.getDefaultState().withProperty(BlockArchaeocyatha.FACING, EnumFacing.SOUTH));
+                                            break;
+
+                                        case 3:
+                                            chunkPrimerIn.setBlockState(i1, j1, l, BlockArchaeocyatha.block.getDefaultState().withProperty(BlockArchaeocyatha.FACING, EnumFacing.WEST));
+                                            break;
+                                    }
+                                }
+                                else if (Math.random() > 0.9) {
                                     chunkPrimerIn.setBlockState(i1, j1, l, BlockBacterialLayer.block.getDefaultState());
                                 } else {
                                     if (Math.random() > 0.5) {

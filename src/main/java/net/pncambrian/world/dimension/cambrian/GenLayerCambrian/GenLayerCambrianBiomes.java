@@ -8,13 +8,13 @@ import net.minecraft.world.gen.layer.IntCache;
 
 public class GenLayerCambrianBiomes extends GenLayer {
 
-    public Biome CAMBRIAN_OCEAN = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea"));
-    public  int CAMBRIAN_OCEAN_ID =  Biome.getIdForBiome(CAMBRIAN_OCEAN);
+    public Biome CAMBRIAN_OCEAN_SHORE = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_shore"));
+    public  int CAMBRIAN_OCEAN_SHORE_ID =  Biome.getIdForBiome(CAMBRIAN_OCEAN_SHORE);
     public  Biome CAMBRIAN_LAND = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_biome"));
     public  int CAMBRIAN_LAND_ID =  Biome.getIdForBiome(CAMBRIAN_LAND);
 
     private final int CambrianBiomes[] = new int[] {
-        CAMBRIAN_OCEAN_ID,
+        CAMBRIAN_OCEAN_SHORE_ID,
         CAMBRIAN_LAND_ID
     };
 
