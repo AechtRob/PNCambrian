@@ -9,23 +9,19 @@ public class GenLayerCambrianShallowOcean extends GenLayer
 {
 
     public Biome CAMBRIAN_OCEAN = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea"));
-    public int CAMBRIAN_OCEAN_ID =  Biome.getIdForBiome(CAMBRIAN_OCEAN);
+    public int CAMBRIAN_OCEAN_ID = Biome.getIdForBiome(CAMBRIAN_OCEAN);
     public Biome CAMBRIAN_OCEAN_SHORE = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_shore"));
-    public int CAMBRIAN_OCEAN_SHORE_ID =  Biome.getIdForBiome(CAMBRIAN_OCEAN_SHORE);
+    public int CAMBRIAN_OCEAN_SHORE_ID = Biome.getIdForBiome(CAMBRIAN_OCEAN_SHORE);
     public Biome CAMBRIAN_BEACH = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_beach"));
-    public int CAMBRIAN_BEACH_ID =  Biome.getIdForBiome(CAMBRIAN_BEACH);
-    public Biome CAMBRIAN_BARREN = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_biome"));
-    public int CAMBRIAN_BARREN_ID =  Biome.getIdForBiome(CAMBRIAN_BARREN);
+    public int CAMBRIAN_BEACH_ID = Biome.getIdForBiome(CAMBRIAN_BEACH);
     public Biome CAMBRIAN_ESTUARY = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_estuary"));
-    public int CAMBRIAN_ESTUARY_ID =  Biome.getIdForBiome(CAMBRIAN_ESTUARY);
-    public Biome CAMBRIAN_ESTUARY_HELPER = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_estuary_helper"));
-    public int CAMBRIAN_ESTUARY_HELPER_ID =  Biome.getIdForBiome(CAMBRIAN_ESTUARY_HELPER);
+    public int CAMBRIAN_ESTUARY_ID = Biome.getIdForBiome(CAMBRIAN_ESTUARY);
     public Biome CAMBRIAN_DUSTY = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_dusty"));
-    public int CAMBRIAN_DUSTY_ID =  Biome.getIdForBiome(CAMBRIAN_DUSTY);
+    public int CAMBRIAN_DUSTY_ID = Biome.getIdForBiome(CAMBRIAN_DUSTY);
     public Biome CAMBRIAN_MOIST = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_moist"));
-    public int CAMBRIAN_MOIST_ID =  Biome.getIdForBiome(CAMBRIAN_MOIST);
-    public  Biome CAMBRIAN_REEF = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_reefs"));
-    public  int CAMBRIAN_REEF_ID =  Biome.getIdForBiome(CAMBRIAN_REEF);
+    public int CAMBRIAN_MOIST_ID = Biome.getIdForBiome(CAMBRIAN_MOIST);
+    public Biome CAMBRIAN_REEF = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_reefs"));
+    public int CAMBRIAN_REEF_ID = Biome.getIdForBiome(CAMBRIAN_REEF);
 
     public GenLayerCambrianShallowOcean(long seed, GenLayer genLayer)
     {
@@ -54,7 +50,7 @@ public class GenLayerCambrianShallowOcean extends GenLayer
                 this.initChunkSeed((long)(j1 + p_151626_1_), (long)(i1 + p_151626_2_));
                 int k1 = aint[j1 + 1 + (i1 + 1) * k];
 
-                if (k1 == CAMBRIAN_OCEAN_ID)
+                if (k1 == CAMBRIAN_OCEAN_ID || k1 == CAMBRIAN_REEF_ID)
                 {
                     int l1 = aint[j1 + 1 + (i1 + 1 - 1) * k];
                     int i2 = aint[j1 + 1 + 1 + (i1 + 1) * k];
