@@ -2,6 +2,7 @@
 package net.pncambrian.world.biome.cambrian;
 
 import net.lepidodendron.block.BlockArchaeocyatha;
+import net.lepidodendron.block.BlockSandBlack;
 import net.lepidodendron.block.BlockSandstoneBlack;
 import net.lepidodendron.util.EnumBiomeTypeCambrian;
 import net.lepidodendron.world.biome.cambrian.BiomeCambrian;
@@ -44,7 +45,7 @@ public class BiomeCambrianEstuary extends ElementsPNCambrianMod.ModElement {
 		public BiomeGenCustom() {
 			super(new BiomeProperties("Cambrian Estuary Lagoons").setRainfall(0.5F).setBaseHeight(-0.175F).setHeightVariation(0.00F).setTemperature(0.95F).setRainfall(0.9F));
 			setRegistryName("lepidodendron:cambrian_estuary");
-			topBlock = Blocks.STONE.getStateFromMeta(0);
+			topBlock = BlockSandBlack.block.getDefaultState();
 			fillerBlock = BlockSandstoneBlack.block.getDefaultState();
 			decorator.treesPerChunk = -999;
 			decorator.flowersPerChunk = 0;
@@ -60,32 +61,6 @@ public class BiomeCambrianEstuary extends ElementsPNCambrianMod.ModElement {
 			this.spawnableCreatureList.clear();
 			this.spawnableWaterCreatureList.clear();
 			this.spawnableCaveCreatureList.clear();
-		}
-
-		@Override
-		@SideOnly(Side.CLIENT)
-		public int getFoliageColorAtPos(BlockPos pos)
-		{
-			return -15424749;
-		}
-
-		@Override
-		@SideOnly(Side.CLIENT)
-		public int getGrassColorAtPos(BlockPos pos)
-		{
-			return -15424749;
-		}
-
-		@Override
-		public int getModdedBiomeGrassColor(int original)
-		{
-			return -15424749;
-		}
-
-		@Override
-		public int getModdedBiomeFoliageColor(int original)
-		{
-			return -15424749;
 		}
 
 		protected static final WorldGenToxicMud TOXIC_MUD_GENERATOR = new WorldGenToxicMud();

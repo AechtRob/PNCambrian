@@ -2,6 +2,7 @@
 package net.pncambrian.world.biome.cambrian;
 
 import net.lepidodendron.block.BlockArchaeocyatha;
+import net.lepidodendron.block.BlockSandBlack;
 import net.lepidodendron.block.BlockSandstoneBlack;
 import net.lepidodendron.util.EnumBiomeTypeCambrian;
 import net.lepidodendron.world.biome.cambrian.BiomeCambrian;
@@ -43,7 +44,7 @@ public class BiomeCambrianEstuaryHelper extends ElementsPNCambrianMod.ModElement
 		public BiomeGenCustom() {
 			super(new BiomeProperties("Cambrian Estuary Lagoons").setRainfall(0.9F).setBaseHeight(0.065F).setHeightVariation(0.0F).setTemperature(0.9F));
 			setRegistryName("lepidodendron:cambrian_estuary_helper");
-			topBlock = Blocks.STONE.getStateFromMeta(0);
+			topBlock = BlockSandBlack.block.getDefaultState();
 			fillerBlock = BlockSandstoneBlack.block.getDefaultState();
 			decorator.treesPerChunk = -999;
 			decorator.flowersPerChunk = 0;

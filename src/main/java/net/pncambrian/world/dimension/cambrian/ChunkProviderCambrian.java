@@ -499,7 +499,38 @@ public class ChunkProviderCambrian implements IChunkGenerator {
                         }
 
                         if (((BiomeCambrian)biome).getBiomeType() == EnumBiomeTypeCambrian.Estuary) {
-                            if (rand.nextInt(8) == 0) {
+                            if (j1 < world.getSeaLevel()) {
+                                if (rand.nextInt(3) != 0) {
+                                    iblockstate = BlockSandBlackWavy.block.getDefaultState();
+                                }
+                            }
+                            if (j1 == world.getSeaLevel()) {
+                                if (rand.nextInt(4) == 0) {
+                                    iblockstate = BlockSandBlackWavy.block.getDefaultState();
+                                }
+                            }
+                            if (rand.nextInt(16) == 0) {
+                                iblockstate = Blocks.STONE.getDefaultState();
+                            }
+                            else if (j1 == world.getSeaLevel()) {
+                                if (rand.nextInt(8) == 0) {
+                                    iblockstate = Blocks.STONE.getDefaultState();
+                                }
+                            }
+                            else if (j1 == world.getSeaLevel() + 1) {
+                                if (rand.nextInt(4) == 0) {
+                                    iblockstate = Blocks.STONE.getDefaultState();
+                                }
+                            }
+                            else if (j1 == world.getSeaLevel() + 2) {
+                                if (rand.nextInt(2) == 0) {
+                                    iblockstate = Blocks.STONE.getDefaultState();
+                                }
+                            }
+                            else if (j1 >= world.getSeaLevel() + 3) {
+                                iblockstate = Blocks.STONE.getDefaultState();
+                            }
+                            if (rand.nextInt(16) == 0) {
                                 iblockstate = Blocks.GRAVEL.getDefaultState();
                             }
                         }
@@ -562,7 +593,12 @@ public class ChunkProviderCambrian implements IChunkGenerator {
                                                         chunkPrimerIn.setBlockState(i1, j1, l, Blocks.SAND.getStateFromMeta(0));
                                                     }
                                                 } else {
-                                                    chunkPrimerIn.setBlockState(i1, j1, l, BlockSandWavy.block.getDefaultState());
+                                                    if (biome == BiomeCambrianEstuary.biome && rand.nextInt(6) == 0) {
+                                                        chunkPrimerIn.setBlockState(i1, j1, l, BlockSandBlackWavy.block.getDefaultState());
+                                                    }
+                                                    else {
+                                                        chunkPrimerIn.setBlockState(i1, j1, l, BlockSandWavy.block.getDefaultState());
+                                                    }
                                                 }
                                             }
                                         }
