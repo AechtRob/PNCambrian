@@ -36,8 +36,8 @@ public class BiomeCambrianEstuaryHelper extends ElementsPNCambrianMod.ModElement
 
 	@Override
 	public void init(FMLInitializationEvent event) {
-		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.WASTELAND);
-		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.DEAD);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.BEACH);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.WATER);
 	}
 
 	static class BiomeGenCustom extends BiomeCambrian {

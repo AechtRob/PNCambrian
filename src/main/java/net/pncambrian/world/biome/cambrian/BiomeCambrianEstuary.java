@@ -38,6 +38,7 @@ public class BiomeCambrianEstuary extends ElementsPNCambrianMod.ModElement {
 
 	@Override
 	public void init(FMLInitializationEvent event) {
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.BEACH);
 		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.WATER);
 	}
 
