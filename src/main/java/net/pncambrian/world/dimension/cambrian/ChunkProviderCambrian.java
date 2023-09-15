@@ -69,6 +69,9 @@ public class ChunkProviderCambrian implements IChunkGenerator {
                         || a.getBlock() == BlockStoneScoria.block
                         || a.getBlock() == BlockStonePorphyry.block
                         || a.getBlock() == BlockToxicMud.block
+                        || a.getMaterial() == Material.ROCK
+                        || a.getMaterial() == Material.SAND
+                        || a.getMaterial() == Material.GROUND
                 )
                     return true;
                 return super.canReplaceBlock(a, b);
@@ -91,6 +94,9 @@ public class ChunkProviderCambrian implements IChunkGenerator {
                         || state.getBlock() == BlockStoneScoria.block
                         || state.getBlock() == BlockStonePorphyry.block
                         || state.getBlock() == BlockToxicMud.block
+                        || state.getMaterial() == Material.ROCK
+                        || state.getMaterial() == Material.SAND
+                        || state.getMaterial() == Material.GROUND
                 ) {
                     if (y - 1 < 10) {
                         data.setBlockState(x, y, z, FLOWING_LAVA);
