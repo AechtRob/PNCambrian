@@ -25,11 +25,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.function.Supplier;
 
-@Mod(modid = PNCambrianMod.MODID, name = PNCambrianMod.NAME, version = PNCambrianMod.VERSION, dependencies = "required-after:lepidodendron@[58.0,)")
+@Mod(modid = PNCambrianMod.MODID, name = PNCambrianMod.NAME, version = PNCambrianMod.VERSION, dependencies = "required-after:lepidodendron@[59.0,)")
 public class PNCambrianMod {
     public static final String MODID = "pncambrian";
     public static final String NAME = "Prehistoric Nature Cambrian Dimension";
-    public static final String VERSION = "2.01";
+    public static final String VERSION = "2.02";
     public static final SimpleNetworkWrapper PACKET_HANDLER = NetworkRegistry.INSTANCE.newSimpleChannel("pncambrian:a");
     @SidedProxy(clientSide = "net.pncambrian.ClientProxyPNCambrianMod", serverSide = "net.pncambrian.ServerProxyPNCambrianMod")
     public static IProxyPNCambrianMod proxy;
