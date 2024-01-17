@@ -1017,7 +1017,7 @@ public class WorldCambrian extends ElementsPNCambrianMod.ModElement {
 			entityIn.setWorld(toWorldIn);
 		}
 
-		private WorldCambrian.TeleporterDimensionMod getTeleporterForDimension(Entity entity, BlockPos pos, int dimid) {
+		public static WorldCambrian.TeleporterDimensionMod getTeleporterForDimension(Entity entity, BlockPos pos, int dimid) {
 			BlockPattern.PatternHelper bph = portal.createPatternHelper(entity.world, new BlockPos(pos));
 			double d0 = bph.getForwards().getAxis() == EnumFacing.Axis.X
 					? (double) bph.getFrontTopLeft().getZ()
