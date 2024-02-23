@@ -1,6 +1,7 @@
 package net.pncambrian.world.dimension.cambrian;
 
 import com.google.common.collect.Lists;
+import net.pncambrian.world.biome.cambrian.BiomeCambrianSeaShore;
 import net.pncambrian.world.dimension.cambrian.GenLayerCambrian.GenLayerCambrian;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
@@ -21,8 +22,20 @@ import java.util.Random;
 
 public class BiomeProviderCambrian extends BiomeProvider {
     public static List<Biome> allowedBiomes = Lists.newArrayList(
+            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_beach")),
+            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_biome")),
+            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_crags")),
+            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_creek")),
+            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_creek_coastal")),
+            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_creek_dusty")),
+            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_dusty")),
+            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_estuary")),
+            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_estuary_helper")),
+            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_hills")),
+            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_moist")),
             Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea")),
-            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_biome"))
+            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_reefs")),
+            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_shore"))
     );
     public GenLayer genBiomes;
     /** A GenLayer containing the indices into BiomeGenBase.biomeList[] */
@@ -55,7 +68,7 @@ public class BiomeProviderCambrian extends BiomeProvider {
 
     @Override
     public Biome getBiome(BlockPos pos, Biome defaultBiome) {
-        return this.biomeCache.getBiome(pos.getX(), pos.getZ(), defaultBiome);
+        return this.biomeCache.getBiome(pos.getX(), pos.getZ(), BiomeCambrianSeaShore.biome);
     }
 
     @Override
@@ -74,7 +87,7 @@ public class BiomeProviderCambrian extends BiomeProvider {
         {
             for (int i = 0; i < width * height; ++i)
             {
-                biomes[i] = Biome.getBiome(aint[i], Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea")));
+                biomes[i] = Biome.getBiome(aint[i], Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_shore")));
             }
 
             return biomes;
@@ -114,7 +127,7 @@ public class BiomeProviderCambrian extends BiomeProvider {
 
             for (int i = 0; i < width * length; ++i)
             {
-                listToReuse[i] = Biome.getBiome(aint[i], Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea")));
+                listToReuse[i] = Biome.getBiome(aint[i], Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_shore")));
             }
 
             return listToReuse;
