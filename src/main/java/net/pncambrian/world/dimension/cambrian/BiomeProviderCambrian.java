@@ -23,20 +23,21 @@ import java.util.Random;
 public class BiomeProviderCambrian extends BiomeProvider {
     public static List<Biome> allowedBiomes = Lists.newArrayList(
             Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_beach")),
-            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_biome")),
             Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_crags")),
             Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_creek")),
-            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_creek_coastal")),
-            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_creek_dusty")),
-            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_dusty")),
             Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_estuary")),
-            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_estuary_helper")),
-            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_hills")),
-            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_moist")),
-            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea")),
+            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_shore")),
+            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_creek_dusty")),
+            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_creek_coastal")),
+            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_dusty")),
             Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_reefs")),
-            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_shore"))
-    );
+            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_estuary_helper")),
+            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_moist")),
+            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_hills")),
+            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea")),
+            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_biome"))
+
+            );
     public GenLayer genBiomes;
     /** A GenLayer containing the indices into BiomeGenBase.biomeList[] */
     public GenLayer biomeIndexLayer;
