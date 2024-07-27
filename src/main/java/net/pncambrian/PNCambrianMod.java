@@ -25,7 +25,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.function.Supplier;
 
-@Mod(modid = PNCambrianMod.MODID, name = PNCambrianMod.NAME, version = PNCambrianMod.VERSION, dependencies = "required-after:lepidodendron@[59.0,)")
+@Mod(modid = PNCambrianMod.MODID, name = PNCambrianMod.NAME, version = PNCambrianMod.VERSION, dependencies = "required-after:lepidodendron@[60.0,)")
 public class PNCambrianMod {
     public static final String MODID = "pncambrian";
     public static final String NAME = "Prehistoric Nature Cambrian Dimension";
