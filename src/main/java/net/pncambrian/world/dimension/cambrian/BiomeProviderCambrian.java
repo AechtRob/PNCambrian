@@ -1,6 +1,9 @@
 package net.pncambrian.world.dimension.cambrian;
 
 import com.google.common.collect.Lists;
+import net.lepidodendron.world.biome.cambrian.BiomeCambrian;
+import net.lepidodendron.world.biome.devonian.BiomeDevonian;
+import net.pncambrian.world.biome.cambrian.BiomeCambrianBiome;
 import net.pncambrian.world.biome.cambrian.BiomeCambrianSeaShore;
 import net.pncambrian.world.dimension.cambrian.GenLayerCambrian.GenLayerCambrian;
 import net.minecraft.crash.CrashReport;
@@ -150,6 +153,9 @@ public class BiomeProviderCambrian extends BiomeProvider {
                 Biome biome = Biome.getBiome(aint[k1]);
 
                 if (!allowed.contains(biome)) {
+                    return false;
+                }
+                if (!(biome instanceof BiomeCambrian)) {
                     return false;
                 }
             }
