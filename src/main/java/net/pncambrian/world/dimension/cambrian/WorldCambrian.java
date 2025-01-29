@@ -4,6 +4,7 @@ package net.pncambrian.world.dimension.cambrian;
 import com.google.common.cache.LoadingCache;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.block.*;
+import net.lepidodendron.util.BlockSounds;
 import net.lepidodendron.util.Functions;
 import net.lepidodendron.util.ModTriggers;
 import net.lepidodendron.util.ParticlePNPortal;
@@ -29,10 +30,7 @@ import net.minecraft.network.play.server.SPacketPlayerAbilities;
 import net.minecraft.network.play.server.SPacketRespawn;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.management.PlayerList;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ReportedException;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
@@ -869,12 +867,19 @@ public class WorldCambrian extends ElementsPNCambrianMod.ModElement {
 		@Override
 		public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random random) {
 
-			if (random.nextInt(110) == 0)
+			if (random.nextInt(80) == 0) {
+				SoundEvent soundEvent = Functions.getDimensionLivingSound(2, world);
+				if (soundEvent != null) {
+					world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+							soundEvent,
+							SoundCategory.BLOCKS, 1.0f, 1.0F, false);
+				}
+			}
+			if (random.nextInt(160) == 0) {
 				world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
-						(net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY
-								.getObject(new ResourceLocation(("block.portal.ambient"))),
+						BlockSounds.PORTAL_AMBIENT,
 						SoundCategory.BLOCKS, 0.5f, random.nextFloat() * 0.4F + 0.8F, false);
-
+			}
 
 			for (int i = 0; i < 4; ++i)
 			{
