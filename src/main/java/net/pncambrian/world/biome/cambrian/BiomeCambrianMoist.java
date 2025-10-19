@@ -1,14 +1,13 @@
 
 package net.pncambrian.world.biome.cambrian;
 
+import net.lepidodendron.block.BlockGreenSproutingAlgae;
+import net.lepidodendron.block.BlockLyracystis;
 import net.lepidodendron.block.BlockToxicMud;
 import net.lepidodendron.block.BlockVolcanicAshLight;
 import net.lepidodendron.util.EnumBiomeTypeCambrian;
 import net.lepidodendron.world.biome.cambrian.BiomeCambrian;
-import net.lepidodendron.world.gen.WorldGenBacterialCrust;
-import net.lepidodendron.world.gen.WorldGenPuddles;
-import net.lepidodendron.world.gen.WorldGenStromatoliteReefCambrian;
-import net.lepidodendron.world.gen.WorldGenThrombolite;
+import net.lepidodendron.world.gen.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -72,6 +71,9 @@ BiomeCambrianMoist extends ElementsPNCambrianMod.ModElement {
 		protected static final WorldGenStromatoliteReefCambrian REEF_GENERATOR = new WorldGenStromatoliteReefCambrian();
 		protected static final WorldGenThrombolite THROMBOLITE_GENERATOR = new WorldGenThrombolite();
 		protected static final WorldGenBacterialCrust CRUST_GENERATOR = new WorldGenBacterialCrust();
+		protected static final WorldGenSingleStaticInWaterUpwards STATIC_GENERATOR = new WorldGenSingleStaticInWaterUpwards();
+		protected static final WorldGenSingleStaticInWaterRotational STATIC_ROTATIONAL_GENERATOR = new WorldGenSingleStaticInWaterRotational();
+		protected static final WorldGenSingleStaticInWaterSideways STATIC_SIDEWAYS_GENERATOR = new WorldGenSingleStaticInWaterSideways();
 
 		@Override
 	    public void decorate(World worldIn, Random rand, BlockPos pos)
@@ -130,6 +132,15 @@ BiomeCambrianMoist extends ElementsPNCambrianMod.ModElement {
 					}
 				}
 			}
+
+			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
+				for (int ii = 0; ii < 2; ++ii)
+				{
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
+					STATIC_GENERATOR.generate(BlockGreenSproutingAlgae.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 15, 0, 255);
+				}
 
 			super.decorate(worldIn, rand, pos);
 	    }
