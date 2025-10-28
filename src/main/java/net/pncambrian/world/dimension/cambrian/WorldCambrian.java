@@ -100,6 +100,13 @@ public class WorldCambrian extends ElementsPNCambrianMod.ModElement {
 			return BiomeCambrianSeaShore.biome;
 		}
 
+		@SideOnly(Side.CLIENT)
+		@Override
+		public float getCloudHeight()
+		{
+			return 165;//Change to desired cloud Y level.
+		}
+
 		@Override
 		public DimensionType getDimensionType() {
 			return dtype;

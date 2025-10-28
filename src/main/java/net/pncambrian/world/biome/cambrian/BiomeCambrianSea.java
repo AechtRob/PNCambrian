@@ -42,7 +42,7 @@ public class BiomeCambrianSea extends ElementsPNCambrianMod.ModElement {
 
 	static class BiomeGenCustom extends BiomeCambrian {
 		public BiomeGenCustom() {
-			super(new BiomeProperties("Cambrian Ocean").setRainfall(0.9F).setBaseHeight(-1.65F).setHeightVariation(0.08F).setTemperature(0.9F));
+			super(new BiomeProperties("Cambrian Ocean").setRainfall(0.9F).setBaseHeight(-0.25F).setHeightVariation(0.08F).setTemperature(0.9F));
 			setRegistryName("lepidodendron:cambrian_sea");
 			topBlock = Blocks.STONE.getStateFromMeta(0);
 			fillerBlock = BlockSandstoneBlack.block.getDefaultState();

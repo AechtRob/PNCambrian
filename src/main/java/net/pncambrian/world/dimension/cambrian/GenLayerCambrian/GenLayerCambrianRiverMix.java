@@ -8,6 +8,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import net.pncambrian.world.biome.cambrian.BiomeCambrianBiome;
+import net.pncambrian.world.biome.cambrian.BiomeCambrianForeshoreDry;
 
 public class GenLayerCambrianRiverMix extends GenLayer
 {
@@ -33,10 +34,14 @@ public class GenLayerCambrianRiverMix extends GenLayer
     public int CAMBRIAN_HILLY_ID =  Biome.getIdForBiome(CAMBRIAN_HILLY);
     public Biome CAMBRIAN_CRAGGY = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_crags"));
     public int CAMBRIAN_CRAGGY_ID =  Biome.getIdForBiome(CAMBRIAN_CRAGGY);
-    public Biome CAMBRIAN_REEF = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_reefs"));
-    public int CAMBRIAN_REEF_ID =  Biome.getIdForBiome(CAMBRIAN_REEF);
     public Biome CAMBRIAN_MOIST = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_moist"));
     public int CAMBRIAN_MOIST_ID = Biome.getIdForBiome(CAMBRIAN_MOIST);
+    public Biome CAMBRIAN_PULSATING = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_siphusauctum"));
+    public int CAMBRIAN_PULSATING_ID =  Biome.getIdForBiome(CAMBRIAN_PULSATING);
+    public Biome CAMBRIAN_OESIA = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_oesia"));
+    public int CAMBRIAN_OESIA_ID =  Biome.getIdForBiome(CAMBRIAN_OESIA);
+    public Biome CAMBRIAN_FORESHORE = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_foreshore"));
+    public int CAMBRIAN_FORESHORE_ID =  Biome.getIdForBiome(CAMBRIAN_FORESHORE);
 
     public GenLayerCambrianRiverMix(long p_i2129_1_, GenLayer p_i2129_3_, GenLayer p_i2129_4_)
     {
@@ -67,8 +72,10 @@ public class GenLayerCambrianRiverMix extends GenLayer
                         || aint[i] == CAMBRIAN_CRAGGY_ID
                         || aint[i] == CAMBRIAN_OCEAN_SHORE_ID
                         || aint[i] == CAMBRIAN_HILLY_ID
-                        || aint[i] == CAMBRIAN_REEF_ID
                         || aint[i] == CAMBRIAN_MOIST_ID
+                        || aint[i] == CAMBRIAN_PULSATING_ID
+                        || aint[i] == CAMBRIAN_OESIA_ID
+                        || aint[i] == CAMBRIAN_FORESHORE_ID
                 )
                 {
                     aint2[i] = aint[i];
@@ -78,7 +85,10 @@ public class GenLayerCambrianRiverMix extends GenLayer
                     Biome biome = Biome.getBiome(aint[i]);
                     if (biome instanceof BiomeCambrian) {
                         BiomeCambrian biomeCambrian = (BiomeCambrian) biome;
-                        if (biomeCambrian.getBiomeType() == EnumBiomeTypeCambrian.Dusty) {
+                        if (biome == BiomeCambrianForeshoreDry.biome) {
+                            aint2[i] = CAMBRIAN_FORESHORE_ID;
+                        }
+                        else if (biomeCambrian.getBiomeType() == EnumBiomeTypeCambrian.Dusty) {
                             aint2[i] = CAMBRIAN_CREEK_DUSTY_ID;
                         }
                         else if (biomeCambrian.getBiomeType() == EnumBiomeTypeCambrian.Ocean) {

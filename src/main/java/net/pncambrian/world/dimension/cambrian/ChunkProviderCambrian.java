@@ -12,6 +12,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -34,7 +35,8 @@ public class ChunkProviderCambrian implements IChunkGenerator {
 
     public static final IBlockState AIR = Blocks.AIR.getDefaultState();
     public static final IBlockState BEDROCK = Blocks.BEDROCK.getDefaultState();
-    public static final int SEALEVEL = 63;
+    //public static final int SEALEVEL = 63;
+    public static final int SEALEVEL = 86;
     public final Random random;
     private NoiseGeneratorOctaves perlin1;
     private NoiseGeneratorOctaves perlin2;
@@ -360,6 +362,13 @@ public class ChunkProviderCambrian implements IChunkGenerator {
                         d3 = d4;
                     }
 
+                    if (biome == BiomeCambrianForeshore.biome || biome == BiomeCambrianForeshoreDry.biome) {
+                        //Flatten these out:
+                        d4 = 0;
+                        d2 = d4;
+                        d3 = d4;
+                    }
+
                     if (biome == BiomeCambrianDusty.biome
                         || biome == BiomeCambrianMoist.biome) {
                         //Flatten these out somewhat less:
@@ -541,156 +550,175 @@ public class ChunkProviderCambrian implements IChunkGenerator {
                             }
                         }
 
-                        j = k;
-                        if (j1 >= i - 1) {
-                            chunkPrimerIn.setBlockState(i1, j1, l, iblockstate);
-                            //} else if (j1 < i - 7 - k) {
-                        } else if (j1 < i - 1) {
-                            iblockstate = AIR;
-                            iblockstate1 = STONE;
-                            if (j1 < i - 6) {
-                                if (biome == BiomeCambrianSeaReefs.biome
-                                        && rand.nextInt(3) == 0) {
-                                    int s = rand.nextInt(4);
-                                    switch (s) {
-                                        case 0: default:
-                                            chunkPrimerIn.setBlockState(i1, j1, l, BlockArchaeocyatha.block.getDefaultState().withProperty(BlockSpongeReef.FACING, EnumFacing.NORTH));
-                                            break;
-
-                                        case 1:
-                                            chunkPrimerIn.setBlockState(i1, j1, l, BlockArchaeocyatha.block.getDefaultState().withProperty(BlockSpongeReef.FACING, EnumFacing.EAST));
-                                            break;
-
-                                        case 2:
-                                            chunkPrimerIn.setBlockState(i1, j1, l, BlockArchaeocyatha.block.getDefaultState().withProperty(BlockSpongeReef.FACING, EnumFacing.SOUTH));
-                                            break;
-
-                                        case 3:
-                                            chunkPrimerIn.setBlockState(i1, j1, l, BlockArchaeocyatha.block.getDefaultState().withProperty(BlockSpongeReef.FACING, EnumFacing.WEST));
-                                            break;
+                        //"Estuary":
+                        if (biome == BiomeCambrianForeshore.biome
+                                || biome == BiomeCambrianForeshoreDry.biome) {
+                            if (j1 >= SEALEVEL) {
+                                iblockstate = BlockCoarseSandyDirtGrey.block.getDefaultState();
+                                if (rand.nextInt(18) == 0) {
+                                    iblockstate = BlockSandMicrobial.block.getDefaultState();
+                                }
+                                if (rand.nextInt(7) == 0) {
+                                    iblockstate = BlockCoarseSandyDirtBlack.block.getDefaultState();
+                                }
+                                if (rand.nextInt(5) == 0) {
+                                    iblockstate = BlockGravelWavy.block.getDefaultState();
+                                }
+                                if (rand.nextInt(9) == 0) {
+                                    iblockstate = BlockCoarseSiltyDirt.block.getDefaultState();
+                                }
+                                if (j1 < SEALEVEL + 1) {
+                                    if (rand.nextInt(20) == 0) {
+                                        iblockstate = BlockPebblestone.block.getDefaultState();
                                     }
                                 }
-                                else if (Math.random() > 0.94) {
-                                    chunkPrimerIn.setBlockState(i1, j1, l, BlockBacterialLayer.block.getDefaultState());
-                                }
-                                else {
-                                    //double rndSand = 0.75;
-                                    //if (biome == BiomeCambrianEstuary.biome) {
-                                    //    rndSand = 0.90;
-                                    //}
-                                    if (Math.random() > 0.75) {
-                                        if (Math.random() > 0.82) {
-                                            chunkPrimerIn.setBlockState(i1, j1, l, Blocks.GRAVEL.getDefaultState());
-                                        }
-                                        else {
-                                            chunkPrimerIn.setBlockState(i1, j1, l, BlockGravelWavy.block.getDefaultState());
-                                        }
-                                    } else {
-                                        if (Math.random() > 0.25) {
-                                            if (Math.random() > 0.92 && ((BiomeCambrian)biome).getBiomeType() == EnumBiomeTypeCambrian.Ocean)  {
-                                                chunkPrimerIn.setBlockState(i1, j1, l, BlockArchaeocyatha.block.getDefaultState());
-                                            }
-                                            else {
-                                                if (Math.random() > 0.85) {
-                                                    if (biome == BiomeCambrianEstuary.biome && rand.nextInt(6) == 0) {
-                                                        chunkPrimerIn.setBlockState(i1, j1, l, BlockSandBlack.block.getDefaultState());
-                                                    }
-                                                    else {
-                                                        chunkPrimerIn.setBlockState(i1, j1, l, Blocks.SAND.getStateFromMeta(0));
-                                                    }
-                                                } else {
-                                                    if (biome == BiomeCambrianEstuary.biome && rand.nextInt(6) == 0) {
-                                                        chunkPrimerIn.setBlockState(i1, j1, l, BlockSandBlackWavy.block.getDefaultState());
-                                                    }
-                                                    else {
-                                                        chunkPrimerIn.setBlockState(i1, j1, l, BlockSandWavy.block.getDefaultState());
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        else {
-                                            chunkPrimerIn.setBlockState(i1, j1, l, Blocks.STONE.getStateFromMeta(0));
-                                        }
-
+                                if (j1 >= SEALEVEL + 1) {
+                                    if (rand.nextInt(9) == 0) {
+                                        iblockstate = Blocks.COBBLESTONE.getDefaultState();
+                                    }
+                                    if (rand.nextInt(7) == 0) {
+                                        iblockstate = Blocks.STONE.getDefaultState();
                                     }
                                 }
                             }
                             else {
-                                if (biome == BiomeCambrianSeaReefs.biome
-                                        && rand.nextInt(3) == 0) {
-                                    int s = rand.nextInt(4);
-                                    switch (s) {
-                                        case 0: default:
-                                            chunkPrimerIn.setBlockState(i1, j1, l, BlockArchaeocyatha.block.getDefaultState().withProperty(BlockArchaeocyatha.FACING, EnumFacing.NORTH));
-                                            break;
-
-                                        case 1:
-                                            chunkPrimerIn.setBlockState(i1, j1, l, BlockArchaeocyatha.block.getDefaultState().withProperty(BlockArchaeocyatha.FACING, EnumFacing.EAST));
-                                            break;
-
-                                        case 2:
-                                            chunkPrimerIn.setBlockState(i1, j1, l, BlockArchaeocyatha.block.getDefaultState().withProperty(BlockArchaeocyatha.FACING, EnumFacing.SOUTH));
-                                            break;
-
-                                        case 3:
-                                            chunkPrimerIn.setBlockState(i1, j1, l, BlockArchaeocyatha.block.getDefaultState().withProperty(BlockArchaeocyatha.FACING, EnumFacing.WEST));
-                                            break;
-                                    }
+                                if (rand.nextInt(10) == 0) {
+                                    iblockstate = BlockCoarseSiltyDirt.block.getDefaultState();
                                 }
-                                else if (Math.random() > 0.9) {
-                                    chunkPrimerIn.setBlockState(i1, j1, l, BlockBacterialLayer.block.getDefaultState());
-                                } else {
-                                    if (Math.random() > 0.5) {
-                                        if (biome == BiomeCambrianEstuary.biome || biome == BiomeCambrianBiome.biome) {
-                                            if (Math.random() > 0.82) {
-                                                chunkPrimerIn.setBlockState(i1, j1, l, BlockSandBlack.block.getDefaultState());
-                                            }
-                                            else {
-                                                chunkPrimerIn.setBlockState(i1, j1, l, BlockSandBlackWavy.block.getDefaultState());
-                                            }
-                                        }
-                                        else {
-                                            if (Math.random() > 0.82) {
-                                                chunkPrimerIn.setBlockState(i1, j1, l, Blocks.GRAVEL.getDefaultState());
-                                            } else {
-                                                chunkPrimerIn.setBlockState(i1, j1, l, BlockGravelWavy.block.getDefaultState());
-                                            }
-                                        }
-                                    } else {
-                                        if (Math.random() > 0.5) {
-                                            if (Math.random() > 0.65) {
-                                                if (Math.random() > 0.92) {
-                                                    chunkPrimerIn.setBlockState(i1, j1, l, BlockArchaeocyatha.block.getDefaultState());
-                                                }
-                                                else {
-                                                    if (Math.random() > 0.85) {
-                                                         chunkPrimerIn.setBlockState(i1, j1, l, Blocks.SAND.getStateFromMeta(0));
-                                                    } else {
-                                                        chunkPrimerIn.setBlockState(i1, j1, l, BlockSandWavy.block.getDefaultState());
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        else {
-                                            chunkPrimerIn.setBlockState(i1, j1, l, Blocks.STONE.getStateFromMeta(0));
-                                        }
-
-                                    }
+                                if (rand.nextInt(3) == 0) {
+                                    iblockstate = BlockCoarseSiltyDirt.block.getDefaultState();
+                                }
+                                if (rand.nextInt(28) == 0) {
+                                    iblockstate = BlockGravelWavy.block.getDefaultState();
+                                }
+                                if (rand.nextInt(19) == 0) {
+                                    iblockstate = BlockBacterialLayer.block.getDefaultState();
                                 }
                             }
-                        } else {
-                            chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
                         }
-                    } else if (j > 0) {
+
+                    j = k;
+                    if ((j1 == i - 1 && i != SEALEVEL)) {
+                        iblockstate1 = getIBlockstateForWater(biome.getRegistryName().toString(), j1, iblockstate1, rand);
+                        chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
+                    }
+                    else if (j1 >= i - 1) {
+                        chunkPrimerIn.setBlockState(i1, j1, l, iblockstate);
+                    }
+                    else if (j1 <= i - 1) {
+                        iblockstate = AIR;
+                        iblockstate1 = STONE;
+
+                        iblockstate1 = getIBlockstateForWater(biome.getRegistryName().toString(), j1, iblockstate1, rand);
+                        chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
+                    }
+                } else if (j > 0) {
                         --j;
                         chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
                         if (j == 0 && iblockstate1.getBlock() == Blocks.SAND && k > 1) {
-                            j = rand.nextInt(4) + Math.max(0, j1 - 63);
+                            j = rand.nextInt(4) + Math.max(0, j1 - world.getSeaLevel());
                             iblockstate1 = iblockstate1.getValue(BlockSand.VARIANT) == BlockSand.EnumType.RED_SAND ? STONE2 : STONE2;
                         }
                     }
                 }
             }
         }
+    }
+
+    public static IBlockState getIBlockstateForWater(String biomeResID, int posY, IBlockState iblockstate, Random rand)
+    {
+
+        Biome biome = Biome.REGISTRY.getObject(new ResourceLocation(biomeResID));
+
+        //Reefs
+        if (biome == BiomeCambrianSeaShore.biome && rand.nextInt(4) == 0) {
+            int s = rand.nextInt(4);
+            switch (s) {
+                case 0:
+                default:
+                    return BlockArchaeocyatha.block.getDefaultState().withProperty(BlockSpongeReef.FACING, EnumFacing.NORTH);
+
+                case 1:
+                    return BlockArchaeocyatha.block.getDefaultState().withProperty(BlockSpongeReef.FACING, EnumFacing.EAST);
+
+                case 2:
+                    return BlockArchaeocyatha.block.getDefaultState().withProperty(BlockSpongeReef.FACING, EnumFacing.SOUTH);
+
+                case 3:
+                    return BlockArchaeocyatha.block.getDefaultState().withProperty(BlockSpongeReef.FACING, EnumFacing.WEST);
+            }
+        }
+
+        //Oesia Ocean:
+        if (biome == BiomeCambrianSeaOesia.biome) {
+            iblockstate = Blocks.SAND.getDefaultState();
+            if (rand.nextInt(2) == 0) {
+                iblockstate = BlockSandWavy.block.getDefaultState();
+            }
+            if (rand.nextInt(10) == 0) {
+                iblockstate = BlockGravelWavy.block.getDefaultState();
+            }
+            if (rand.nextInt(10) == 0) {
+                iblockstate = Blocks.GRAVEL.getDefaultState();
+            }
+        }
+
+        //Foreshore:
+        if (biome == BiomeCambrianForeshore.biome || biome == BiomeCambrianForeshoreDry.biome) {
+            iblockstate = BlockCoarseSiltyDirt.block.getDefaultState();
+            if (rand.nextInt(6) == 0) {
+                iblockstate = BlockCoarseSandyDirtGrey.block.getDefaultState();
+            }
+            if (rand.nextInt(10) == 0) {
+                iblockstate = BlockGravelWavy.block.getDefaultState();
+            }
+            if (rand.nextInt(24) == 0) {
+                iblockstate = BlockClayBrown.block.getDefaultState();
+            }
+            if (rand.nextInt(26) == 0) {
+                iblockstate = BlockSandGrey.block.getDefaultState();
+            }
+            if (rand.nextInt(26) == 0) {
+                iblockstate = BlockBacterialLayer.block.getDefaultState();
+            }
+        }
+
+        //Shallow Ocean Shore:
+        if (biome == BiomeCambrianSeaSiphusauctum.biome) {
+            iblockstate = BlockSandBlack.block.getDefaultState();
+            if (rand.nextInt(4) == 0) {
+                if (rand.nextInt(3) == 0) {
+                    iblockstate = BlockCarboniferousMud.block.getDefaultState();
+                }
+                else {
+                    iblockstate = BlockCoarseSandyDirtBlack.block.getDefaultState();
+                }
+            }
+            if (rand.nextInt(18) == 0) {
+                iblockstate = BlockLavaCobbleMossy.block.getDefaultState();
+            }
+            if (rand.nextInt(18) == 0) {
+                int s = rand.nextInt(4);
+                switch (s) {
+                    case 0:
+                    default:
+                        return BlockArchaeocyatha.block.getDefaultState().withProperty(BlockSpongeReef.FACING, EnumFacing.NORTH);
+
+                    case 1:
+                        return BlockArchaeocyatha.block.getDefaultState().withProperty(BlockSpongeReef.FACING, EnumFacing.EAST);
+
+                    case 2:
+                        return BlockArchaeocyatha.block.getDefaultState().withProperty(BlockSpongeReef.FACING, EnumFacing.SOUTH);
+
+                    case 3:
+                        return BlockArchaeocyatha.block.getDefaultState().withProperty(BlockSpongeReef.FACING, EnumFacing.WEST);
+                }
+            }
+        }
+
+
+
+        return iblockstate;
+
     }
 }

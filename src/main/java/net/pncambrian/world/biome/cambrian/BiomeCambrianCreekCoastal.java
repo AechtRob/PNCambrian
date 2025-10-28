@@ -39,7 +39,7 @@ public class BiomeCambrianCreekCoastal extends ElementsPNCambrianMod.ModElement 
 
 	static class BiomeGenCustom extends BiomeCambrian {
 		public BiomeGenCustom() {
-			super(new BiomeProperties("Cambrian Coastal Creek").setRainfall(0.9F).setBaseHeight(-0.525F).setHeightVariation(0.0F).setTemperature(0.9F));
+			super(new BiomeProperties("Cambrian Coastal Creek").setRainfall(0.9F).setBaseHeight(0.875F).setHeightVariation(0.0F).setTemperature(0.9F));
 			setRegistryName("lepidodendron:cambrian_creek_coastal");
 			topBlock = Blocks.STONE.getStateFromMeta(0);
 			fillerBlock = BlockSandstoneBlack.block.getDefaultState();

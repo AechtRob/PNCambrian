@@ -12,6 +12,8 @@ public class GenLayerCambrianShallowOcean extends GenLayer
     public int CAMBRIAN_OCEAN_ID = Biome.getIdForBiome(CAMBRIAN_OCEAN);
     public Biome CAMBRIAN_OCEAN_SHORE = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_shore"));
     public int CAMBRIAN_OCEAN_SHORE_ID = Biome.getIdForBiome(CAMBRIAN_OCEAN_SHORE);
+    public Biome CAMBRIAN_FORESHORE = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_foreshore_dry"));
+    public int CAMBRIAN_FORESHORE_ID =  Biome.getIdForBiome(CAMBRIAN_FORESHORE);
     public Biome CAMBRIAN_BEACH = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_beach"));
     public int CAMBRIAN_BEACH_ID = Biome.getIdForBiome(CAMBRIAN_BEACH);
     public Biome CAMBRIAN_ESTUARY = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_estuary"));
@@ -20,8 +22,10 @@ public class GenLayerCambrianShallowOcean extends GenLayer
     public int CAMBRIAN_DUSTY_ID = Biome.getIdForBiome(CAMBRIAN_DUSTY);
     public Biome CAMBRIAN_MOIST = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_moist"));
     public int CAMBRIAN_MOIST_ID = Biome.getIdForBiome(CAMBRIAN_MOIST);
-    public Biome CAMBRIAN_REEF = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_reefs"));
-    public int CAMBRIAN_REEF_ID = Biome.getIdForBiome(CAMBRIAN_REEF);
+    public Biome CAMBRIAN_PULSATING = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_siphusauctum"));
+    public int CAMBRIAN_PULSATING_ID =  Biome.getIdForBiome(CAMBRIAN_PULSATING);
+    public Biome CAMBRIAN_OESIA = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_oesia"));
+    public int CAMBRIAN_OESIA_ID =  Biome.getIdForBiome(CAMBRIAN_OESIA);
 
     public GenLayerCambrianShallowOcean(long seed, GenLayer genLayer)
     {
@@ -50,17 +54,17 @@ public class GenLayerCambrianShallowOcean extends GenLayer
                 this.initChunkSeed((long)(j1 + p_151626_1_), (long)(i1 + p_151626_2_));
                 int k1 = aint[j1 + 1 + (i1 + 1) * k];
 
-                if (k1 == CAMBRIAN_OCEAN_ID || k1 == CAMBRIAN_REEF_ID)
+                if (k1 == CAMBRIAN_OCEAN_ID || k1 == CAMBRIAN_PULSATING_ID || k1 == CAMBRIAN_OESIA_ID)
                 {
                     int l1 = aint[j1 + 1 + (i1 + 1 - 1) * k];
                     int i2 = aint[j1 + 1 + 1 + (i1 + 1) * k];
                     int j2 = aint[j1 + 1 - 1 + (i1 + 1) * k];
                     int k2 = aint[j1 + 1 + (i1 + 1 + 1) * k];
                     boolean flag = (
-                        (l1 == CAMBRIAN_MOIST_ID || l1 == CAMBRIAN_DUSTY_ID || l1 == CAMBRIAN_ESTUARY_ID || l1 == CAMBRIAN_BEACH_ID)
-                        || (i2 == CAMBRIAN_MOIST_ID || i2 == CAMBRIAN_DUSTY_ID || i2 == CAMBRIAN_ESTUARY_ID || i2 == CAMBRIAN_BEACH_ID)
-                        || (j2 == CAMBRIAN_MOIST_ID || j2 == CAMBRIAN_DUSTY_ID || j2 == CAMBRIAN_ESTUARY_ID || j2 == CAMBRIAN_BEACH_ID)
-                        || (k2 == CAMBRIAN_MOIST_ID || k2 == CAMBRIAN_DUSTY_ID || k2 == CAMBRIAN_ESTUARY_ID || k2 == CAMBRIAN_BEACH_ID)
+                        (l1 == CAMBRIAN_MOIST_ID || l1 == CAMBRIAN_DUSTY_ID || l1 == CAMBRIAN_ESTUARY_ID || l1 == CAMBRIAN_BEACH_ID || l1 == CAMBRIAN_FORESHORE_ID)
+                        || (i2 == CAMBRIAN_MOIST_ID || i2 == CAMBRIAN_DUSTY_ID || i2 == CAMBRIAN_ESTUARY_ID || i2 == CAMBRIAN_BEACH_ID || i2 == CAMBRIAN_FORESHORE_ID)
+                        || (j2 == CAMBRIAN_MOIST_ID || j2 == CAMBRIAN_DUSTY_ID || j2 == CAMBRIAN_ESTUARY_ID || j2 == CAMBRIAN_BEACH_ID || j2 == CAMBRIAN_FORESHORE_ID)
+                        || (k2 == CAMBRIAN_MOIST_ID || k2 == CAMBRIAN_DUSTY_ID || k2 == CAMBRIAN_ESTUARY_ID || k2 == CAMBRIAN_BEACH_ID || k2 == CAMBRIAN_FORESHORE_ID)
                     );
                     if (flag)
                     {

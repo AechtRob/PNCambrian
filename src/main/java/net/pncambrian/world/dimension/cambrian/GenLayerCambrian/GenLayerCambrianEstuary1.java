@@ -12,25 +12,19 @@ public class GenLayerCambrianEstuary1 extends GenLayer
     public int CAMBRIAN_OCEAN_ID =  Biome.getIdForBiome(CAMBRIAN_OCEAN);
     public Biome CAMBRIAN_OCEAN_SHORE = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_shore"));
     public int CAMBRIAN_OCEAN_SHORE_ID =  Biome.getIdForBiome(CAMBRIAN_OCEAN_SHORE);
-    public Biome CAMBRIAN_BARREN = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_biome"));
-    public int CAMBRIAN_BARREN_ID =  Biome.getIdForBiome(CAMBRIAN_BARREN);
     public Biome CAMBRIAN_ESTUARY = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_estuary"));
     public int CAMBRIAN_ESTUARY_ID =  Biome.getIdForBiome(CAMBRIAN_ESTUARY);
-    public Biome CAMBRIAN_ESTUARY_HELPER = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_estuary_helper"));
-    public int CAMBRIAN_ESTUARY_HELPER_ID =  Biome.getIdForBiome(CAMBRIAN_ESTUARY_HELPER);
-    public Biome CAMBRIAN_DUSTY = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_dusty"));
-    public int CAMBRIAN_DUSTY_ID =  Biome.getIdForBiome(CAMBRIAN_DUSTY);
-    public Biome CAMBRIAN_MOIST = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_moist"));
-    public int CAMBRIAN_MOIST_ID =  Biome.getIdForBiome(CAMBRIAN_MOIST);
-
-    public Biome CAMBRIAN_BEACH = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_beach"));
-    public int CAMBRIAN_BEACH_ID =  Biome.getIdForBiome(CAMBRIAN_BEACH);
 
     public GenLayerCambrianEstuary1(long seed, GenLayer genLayer)
     {
         super(seed);
         this.parent = genLayer;
     }
+
+    private final int CambrianSeaBiomes[] = new int[] {
+            CAMBRIAN_ESTUARY_ID,
+            CAMBRIAN_ESTUARY_ID
+    };
 
     public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight)
     {
@@ -67,7 +61,7 @@ public class GenLayerCambrianEstuary1 extends GenLayer
                         else
                         {
                             if (nextInt(3) == 0) {
-                                aint1[j + i * areaWidth] = CAMBRIAN_ESTUARY_ID;
+                                aint1[j + i * areaWidth] = CambrianSeaBiomes[nextInt(CambrianSeaBiomes.length)];;
                             }
                             else {
                                 aint1[j + i * areaWidth] = k;
@@ -90,7 +84,7 @@ public class GenLayerCambrianEstuary1 extends GenLayer
     }
 
     private boolean isOcean(int biomeID) {
-        if (biomeID == CAMBRIAN_OCEAN_ID || biomeID == CAMBRIAN_OCEAN_SHORE_ID) {
+        if (biomeID == CAMBRIAN_OCEAN_ID || biomeID == CAMBRIAN_OCEAN_SHORE_ID ) {
             return true;
         }
         return false;

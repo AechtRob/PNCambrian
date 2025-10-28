@@ -39,7 +39,8 @@ public class BiomeCambrianEstuaryHelper extends ElementsPNCambrianMod.ModElement
 
 	static class BiomeGenCustom extends BiomeCambrian {
 		public BiomeGenCustom() {
-			super(new BiomeProperties("Cambrian Estuary Lagoons").setRainfall(0.9F).setBaseHeight(0.065F).setHeightVariation(0.0F).setTemperature(0.9F));
+			super(new BiomeProperties("Cambrian Estuary Lagoons").setRainfall(0.9F).setBaseHeight(1.265F).setHeightVariation(0.0F).setTemperature(0.9F));
+																				/// 0.65F + 0.4
 			setRegistryName("lepidodendron:cambrian_estuary_helper");
 			topBlock = BlockSandBlack.block.getDefaultState();
 			fillerBlock = BlockSandstoneBlack.block.getDefaultState();

@@ -39,7 +39,7 @@ public class BiomeCambrianCrags extends ElementsPNCambrianMod.ModElement {
 
 	static class BiomeGenCustom extends BiomeCambrian {
 		public BiomeGenCustom() {
-			super(new BiomeProperties("Cambrian Craggy Wastes").setRainfall(0.4F).setBaseHeight(2.95F).setHeightVariation(0.4F).setTemperature(0.5F));
+			super(new BiomeProperties("Cambrian Craggy Wastes").setRainfall(0.4F).setBaseHeight(4.35F).setHeightVariation(0.4F).setTemperature(0.5F));
 			setRegistryName("lepidodendron:cambrian_crags");
 			topBlock = Blocks.STONE.getStateFromMeta(0);
 			fillerBlock = BlockSandstoneBlack.block.getDefaultState();

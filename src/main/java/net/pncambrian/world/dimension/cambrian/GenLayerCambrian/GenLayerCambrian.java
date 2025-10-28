@@ -17,11 +17,11 @@ public class GenLayerCambrian {
         }
         biomes = new GenLayerDiversifyCambrian(700L, biomes);
         biomes = new GenLayerZoom(1000L, biomes);
-        biomes = new GenLayerDiversifyCambrian(700L, biomes);
+        biomes = new GenLayerDiversifyCambrian2(900L, biomes);
         biomes = new GenLayerFuzzyZoom(2900L, biomes);
 
         biomes = new GenLayerCambrianEstuary1(1000L, biomes);
-        biomes = new GenLayerDiversifyOceanCambrian(3005L, biomes);
+        //biomes = new GenLayerDiversifyOceanCambrian(3005L, biomes);
 
         biomes = new GenLayerZoom(1001L, biomes);
         biomes = new GenLayerCambrianDeepOcean(1109L, biomes);
@@ -62,14 +62,32 @@ public class GenLayerCambrian {
         GenLayer genlayercreek7 = new GenLayerSmooth(1000L, genlayercreek6);
         GenLayer genlayercreekfinal = new GenLayerCambrianRiverMix(100L, biomes, genlayercreek7);
 
-        GenLayer genlayervoronoizoom = new GenLayerVoronoiZoom(10L, genlayercreekfinal);
+        //Additional features:
+        GenLayer genlayerdeltacreek = new GenLayerRiverInit(200L, biomes);
+        GenLayer genlayerdeltacreek2 = GenLayerZoom.magnify(2000L, genlayerdeltacreek, 2);
+        GenLayer genlayerdeltacreek3 = GenLayerZoom.magnify(2000L, genlayerdeltacreek2, 2);
+        GenLayer genlayerdeltacreek4 = GenLayerZoom.magnify(2000L, genlayerdeltacreek3, 2);
+        GenLayer genlayerdeltacreek5 = new GenLayerRiver(2L, genlayerdeltacreek4);
+        GenLayer genlayerdeltacreek6 = new GenLayerSmooth(2000L, genlayerdeltacreek5);
+        GenLayer genlayerdeltacreekfinal = new GenLayerCambrianRiverMixDeltaSpecial(200L, genlayercreekfinal, genlayerdeltacreek6);
 
-        genlayercreekfinal.initWorldGenSeed(seed);
+        GenLayer genlayerdeltacreekB = new GenLayerRiverInit(500L, biomes);
+        GenLayer genlayerdeltacreekB2 = GenLayerZoom.magnify(5000L, genlayerdeltacreekB, 2);
+        GenLayer genlayerdeltacreekB3 = GenLayerZoom.magnify(5000L, genlayerdeltacreekB2, 2);
+        GenLayer genlayerdeltacreekB4 = GenLayerZoom.magnify(5000L, genlayerdeltacreekB3, 2);
+        GenLayer genlayerdeltacreekB5 = new GenLayerRiver(5L, genlayerdeltacreekB4);
+        GenLayer genlayerdeltacreekB6 = new GenLayerSmooth(5000L, genlayerdeltacreekB5);
+        GenLayer genlayerdeltacreekBfinal = new GenLayerCambrianRiverMixDeltaSpecial(500L, genlayerdeltacreekfinal, genlayerdeltacreekB6);
+
+
+        GenLayer genlayervoronoizoom = new GenLayerVoronoiZoom(10L, genlayerdeltacreekBfinal);
+
+        genlayerdeltacreekBfinal.initWorldGenSeed(seed);
         genlayervoronoizoom.initWorldGenSeed(seed);
         biomes.initWorldGenSeed(seed);
 
         genlayervoronoizoom.initWorldGenSeed(seed);
-        return (new GenLayer[] { genlayercreekfinal, genlayervoronoizoom, genlayercreekfinal });
+        return (new GenLayer[] { genlayerdeltacreekBfinal, genlayervoronoizoom, genlayerdeltacreekBfinal });
     }
 
 }

@@ -44,7 +44,7 @@ BiomeCambrianMoist extends ElementsPNCambrianMod.ModElement {
 
 	static class BiomeGenCustom extends BiomeCambrian {
 		public BiomeGenCustom() {
-			super(new BiomeProperties("Cambrian Moist Wastes").setRainfall(0.9F).setBaseHeight(-0.175F).setHeightVariation(0.01F).setTemperature(0.9F));
+			super(new BiomeProperties("Cambrian Moist Wastes").setRainfall(0.9F).setBaseHeight(1.225F).setHeightVariation(0.01F).setTemperature(0.9F));
 			setRegistryName("lepidodendron:cambrian_moist");
 			topBlock = BlockToxicMud.block.getDefaultState();
 			fillerBlock = Blocks.STONE.getStateFromMeta(0);

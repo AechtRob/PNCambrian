@@ -39,7 +39,7 @@ public class BiomeCambrianBeach extends ElementsLepidodendronMod.ModElement {
 
 	static class BiomeGenCustom extends BiomeCambrian {
 		public BiomeGenCustom() {
-			super(new BiomeProperties("Cambrian Gravels").setRainfall(0.5F).setBaseHeight(0.0F).setHeightVariation(0.025F));
+			super(new BiomeProperties("Cambrian Gravels").setRainfall(0.5F).setBaseHeight(1.4F).setHeightVariation(0.025F));
 			setRegistryName("lepidodendron:cambrian_beach");
 			this.topBlock = Blocks.GRAVEL.getDefaultState();
 			this.fillerBlock = Blocks.STONE.getStateFromMeta(0);

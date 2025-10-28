@@ -36,7 +36,7 @@ public class BiomeCambrianCreekDusty extends ElementsPNCambrianMod.ModElement {
 
 	static class BiomeGenCustom extends BiomeCambrian {
 		public BiomeGenCustom() {
-			super(new BiomeProperties("Cambrian Dusty Creek").setRainfall(0.9F).setBaseHeight(-0.250F).setHeightVariation(0.0F).setTemperature(0.9F).setWaterColor(16758578));
+			super(new BiomeProperties("Cambrian Dusty Creek").setRainfall(0.9F).setBaseHeight(1.15F).setHeightVariation(0.0F).setTemperature(0.9F).setWaterColor(16758578));
 			setRegistryName("lepidodendron:cambrian_creek_dusty");
 			topBlock = BlockVolcanicAshLight.block.getDefaultState();
 			fillerBlock = Blocks.STONE.getStateFromMeta(0);
