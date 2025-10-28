@@ -39,8 +39,8 @@ public class BiomeProviderCambrian extends BiomeProvider {
             Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea")),
             Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_biome")),
             Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_foreshore")),
+            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_foreshore_dry")),
             Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_reefs")),
-            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_oesia")),
             Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_siphusauctum")),
             Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_abyssal"))
 

@@ -20,7 +20,7 @@ import java.util.Random;
 
 @ElementsPNCambrianMod.ModElement.Tag
 public class BiomeCambrianForeshoreDry extends ElementsPNCambrianMod.ModElement {
-	@GameRegistry.ObjectHolder("lepidodendron:cambrian_sea_reefs")
+	@GameRegistry.ObjectHolder("lepidodendron:cambrian_foreshore_dry")
 	public static final BiomeGenCustom biome = null;
 	public BiomeCambrianForeshoreDry(ElementsPNCambrianMod instance) {
 		super(instance, 1591);
@@ -41,7 +41,7 @@ public class BiomeCambrianForeshoreDry extends ElementsPNCambrianMod.ModElement 
 		public BiomeGenCustom() {
 			super(new BiomeProperties("Cambrian Silty Shore").setRainfall(0.5F).setBaseHeight(1.235F).setHeightVariation(0.00F).setTemperature(0.95F).setRainfall(0.9F));
 
-			setRegistryName("lepidodendron:cambrian_sea_reefs");
+			setRegistryName("lepidodendron:cambrian_foreshore_dry");
 			topBlock = BlockCoarseSandyDirtGrey.block.getDefaultState();
 			fillerBlock = BlockCoarseSandyDirtGrey.block.getDefaultState();
 			decorator.treesPerChunk = -999;

@@ -15,7 +15,7 @@ public class GenLayerCambrianDeepOcean extends GenLayer
     public  int CAMBRIAN_OCEAN_SHORE_ID =  Biome.getIdForBiome(CAMBRIAN_OCEAN_SHORE);
     public Biome CAMBRIAN_PULSATING = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_siphusauctum"));
     public int CAMBRIAN_PULSATING_ID =  Biome.getIdForBiome(CAMBRIAN_PULSATING);
-    public Biome CAMBRIAN_OESIA = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_oesia"));
+    public Biome CAMBRIAN_OESIA = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_reefs"));
     public int CAMBRIAN_OESIA_ID =  Biome.getIdForBiome(CAMBRIAN_OESIA);
     public Biome CAMBRIAN_ABYSS = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_abyssal"));
     public int CAMBRIAN_ABYSS_ID =  Biome.getIdForBiome(CAMBRIAN_ABYSS);

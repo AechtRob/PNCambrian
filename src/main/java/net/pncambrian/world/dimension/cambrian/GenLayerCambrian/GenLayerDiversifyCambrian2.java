@@ -11,7 +11,7 @@ public class GenLayerDiversifyCambrian2 extends GenLayer {
 
     public Biome CAMBRIAN_OCEAN = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_shore"));
     public int CAMBRIAN_OCEAN_ID = Biome.getIdForBiome(CAMBRIAN_OCEAN);
-    public Biome CAMBRIAN_FORESHORE = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_reefs"));
+    public Biome CAMBRIAN_FORESHORE = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_foreshore_dry"));
     public int CAMBRIAN_FORESHORE_ID = Biome.getIdForBiome(CAMBRIAN_FORESHORE);
 
     public Biome CAMBRIAN_DUSTY = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_dusty"));
