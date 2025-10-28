@@ -631,26 +631,62 @@ public class ChunkProviderCambrian implements IChunkGenerator {
         Biome biome = Biome.REGISTRY.getObject(new ResourceLocation(biomeResID));
 
         //Reefs
-        if (biome == BiomeCambrianSeaShore.biome && rand.nextInt(4) == 0) {
-            int s = rand.nextInt(4);
-            switch (s) {
-                case 0:
-                default:
-                    return BlockArchaeocyatha.block.getDefaultState().withProperty(BlockSpongeReef.FACING, EnumFacing.NORTH);
+        if (biome == BiomeCambrianSeaShore.biome) {
+            if (posY <= 35 + rand.nextInt(6)) {
+                //copy abyssal for this
+                iblockstate = BlockLavaRock.block.getDefaultState();
+                if (rand.nextInt(4) == 0) {
+                    iblockstate = BlockSandBlack.block.getDefaultState();
+                }
+                if (rand.nextInt(4) == 0) {
+                    iblockstate = BlockLavaCobble.block.getDefaultState();
+                }
+                if (rand.nextInt(4) == 0) {
+                    iblockstate = BlockSandBlackWavy.block.getDefaultState();
+                }
+                if (rand.nextInt(24) == 0) {
+                    iblockstate = Blocks.STONE.getDefaultState();
+                }
+                return iblockstate;
+            }
+            if (rand.nextInt(4) == 0) {
+                int s = rand.nextInt(4);
+                switch (s) {
+                    case 0:
+                    default:
+                        return BlockArchaeocyatha.block.getDefaultState().withProperty(BlockSpongeReef.FACING, EnumFacing.NORTH);
 
-                case 1:
-                    return BlockArchaeocyatha.block.getDefaultState().withProperty(BlockSpongeReef.FACING, EnumFacing.EAST);
+                    case 1:
+                        return BlockArchaeocyatha.block.getDefaultState().withProperty(BlockSpongeReef.FACING, EnumFacing.EAST);
 
-                case 2:
-                    return BlockArchaeocyatha.block.getDefaultState().withProperty(BlockSpongeReef.FACING, EnumFacing.SOUTH);
+                    case 2:
+                        return BlockArchaeocyatha.block.getDefaultState().withProperty(BlockSpongeReef.FACING, EnumFacing.SOUTH);
 
-                case 3:
-                    return BlockArchaeocyatha.block.getDefaultState().withProperty(BlockSpongeReef.FACING, EnumFacing.WEST);
+                    case 3:
+                        return BlockArchaeocyatha.block.getDefaultState().withProperty(BlockSpongeReef.FACING, EnumFacing.WEST);
+                }
             }
         }
 
         //Oesia Ocean:
         if (biome == BiomeCambrianSeaOesia.biome) {
+            if (posY <= 35 + rand.nextInt(6)) {
+                //copy abyssal for this
+                iblockstate = BlockLavaRock.block.getDefaultState();
+                if (rand.nextInt(4) == 0) {
+                    iblockstate = BlockSandBlack.block.getDefaultState();
+                }
+                if (rand.nextInt(4) == 0) {
+                    iblockstate = BlockLavaCobble.block.getDefaultState();
+                }
+                if (rand.nextInt(4) == 0) {
+                    iblockstate = BlockSandBlackWavy.block.getDefaultState();
+                }
+                if (rand.nextInt(24) == 0) {
+                    iblockstate = Blocks.STONE.getDefaultState();
+                }
+                return iblockstate;
+            }
             iblockstate = Blocks.SAND.getDefaultState();
             if (rand.nextInt(2) == 0) {
                 iblockstate = BlockSandWavy.block.getDefaultState();
@@ -665,6 +701,23 @@ public class ChunkProviderCambrian implements IChunkGenerator {
 
         //Foreshore:
         if (biome == BiomeCambrianForeshore.biome || biome == BiomeCambrianForeshoreDry.biome) {
+            if (posY <= 35 + rand.nextInt(6)) {
+                //copy abyssal for this
+                iblockstate = BlockLavaRock.block.getDefaultState();
+                if (rand.nextInt(4) == 0) {
+                    iblockstate = BlockSandBlack.block.getDefaultState();
+                }
+                if (rand.nextInt(4) == 0) {
+                    iblockstate = BlockLavaCobble.block.getDefaultState();
+                }
+                if (rand.nextInt(4) == 0) {
+                    iblockstate = BlockSandBlackWavy.block.getDefaultState();
+                }
+                if (rand.nextInt(24) == 0) {
+                    iblockstate = Blocks.STONE.getDefaultState();
+                }
+                return iblockstate;
+            }
             iblockstate = BlockCoarseSiltyDirt.block.getDefaultState();
             if (rand.nextInt(6) == 0) {
                 iblockstate = BlockCoarseSandyDirtGrey.block.getDefaultState();
@@ -683,8 +736,86 @@ public class ChunkProviderCambrian implements IChunkGenerator {
             }
         }
 
+        //Deep Ocean:
+        if (biome == BiomeCambrianSea.biome) {
+            if (posY <= 35 + rand.nextInt(6)) {
+                //copy abyssal for this
+                iblockstate = BlockLavaRock.block.getDefaultState();
+                if (rand.nextInt(4) == 0) {
+                    iblockstate = BlockSandBlack.block.getDefaultState();
+                }
+                if (rand.nextInt(4) == 0) {
+                    iblockstate = BlockLavaCobble.block.getDefaultState();
+                }
+                if (rand.nextInt(4) == 0) {
+                    iblockstate = BlockSandBlackWavy.block.getDefaultState();
+                }
+                if (rand.nextInt(24) == 0) {
+                    iblockstate = Blocks.STONE.getDefaultState();
+                }
+                return iblockstate;
+            }
+        }
+
+
+
+        //Reef/Shallow Ocean:
+        if (biome == BiomeCambrianSeaShore.biome) {
+            if (posY <= 35 + rand.nextInt(6)) {
+                //copy abyssal for this
+                iblockstate = BlockLavaRock.block.getDefaultState();
+                if (rand.nextInt(4) == 0) {
+                    iblockstate = BlockSandBlack.block.getDefaultState();
+                }
+                if (rand.nextInt(4) == 0) {
+                    iblockstate = BlockLavaCobble.block.getDefaultState();
+                }
+                if (rand.nextInt(4) == 0) {
+                    iblockstate = BlockSandBlackWavy.block.getDefaultState();
+                }
+                if (rand.nextInt(24) == 0) {
+                    iblockstate = Blocks.STONE.getDefaultState();
+                }
+                return iblockstate;
+            }
+        }
+
+        //Abyss:
+        if (biome == BiomeCambrianAbyssal.biome) {
+            iblockstate = BlockLavaRock.block.getDefaultState();
+            if (rand.nextInt(4) == 0) {
+                iblockstate = BlockSandBlack.block.getDefaultState();
+            }
+            if (rand.nextInt(4) == 0) {
+                iblockstate = BlockLavaCobble.block.getDefaultState();
+            }
+            if (rand.nextInt(4) == 0) {
+                iblockstate = BlockSandBlackWavy.block.getDefaultState();
+            }
+            if (rand.nextInt(24) == 0) {
+                iblockstate = Blocks.STONE.getDefaultState();
+            }
+        }
+
         //Shallow Ocean Shore:
         if (biome == BiomeCambrianSeaSiphusauctum.biome) {
+            if (posY <= 35 + rand.nextInt(6)) {
+                //copy abyssal for this
+                iblockstate = BlockLavaRock.block.getDefaultState();
+                if (rand.nextInt(4) == 0) {
+                    iblockstate = BlockSandBlack.block.getDefaultState();
+                }
+                if (rand.nextInt(4) == 0) {
+                    iblockstate = BlockLavaCobble.block.getDefaultState();
+                }
+                if (rand.nextInt(4) == 0) {
+                    iblockstate = BlockSandBlackWavy.block.getDefaultState();
+                }
+                if (rand.nextInt(24) == 0) {
+                    iblockstate = Blocks.STONE.getDefaultState();
+                }
+                return iblockstate;
+            }
             iblockstate = BlockSandBlack.block.getDefaultState();
             if (rand.nextInt(4) == 0) {
                 if (rand.nextInt(3) == 0) {

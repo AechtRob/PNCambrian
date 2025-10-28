@@ -12,7 +12,7 @@ public class GenLayerCambrianBeachExtra extends GenLayer
     public int CAMBRIAN_OCEAN_ID =  Biome.getIdForBiome(CAMBRIAN_OCEAN);
     public Biome CAMBRIAN_OCEAN_SHORE = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_shore"));
     public int CAMBRIAN_OCEAN_SHORE_ID =  Biome.getIdForBiome(CAMBRIAN_OCEAN_SHORE);
-    public Biome CAMBRIAN_FORESHORE = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_foreshore_dry"));
+    public Biome CAMBRIAN_FORESHORE = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_reefs"));
     public int CAMBRIAN_FORESHORE_ID =  Biome.getIdForBiome(CAMBRIAN_FORESHORE);
 
     public Biome CAMBRIAN_LAGOON_HELPER = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_estuary_helper"));

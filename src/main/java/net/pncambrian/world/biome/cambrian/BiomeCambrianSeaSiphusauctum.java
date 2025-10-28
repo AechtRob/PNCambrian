@@ -113,7 +113,7 @@ public class BiomeCambrianSeaSiphusauctum extends ElementsPNCambrianMod.ModEleme
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					ANEMONE_GENERATOR.generate(worldIn, rand, pos.add(j, l, k), 1, 255, 0, 255, -1);
+					ANEMONE_GENERATOR.generate(worldIn, rand, pos.add(j, l, k), 1, 255, 35, 255, -1);
 				}
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
@@ -122,7 +122,7 @@ public class BiomeCambrianSeaSiphusauctum extends ElementsPNCambrianMod.ModEleme
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_SIDEWAYS_GENERATOR.generate(BlockBrachiopodOrthid.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 2, 255, 0, 255);
+					STATIC_SIDEWAYS_GENERATOR.generate(BlockBrachiopodOrthid.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 2, 255, 35, 255);
 				}
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
@@ -131,7 +131,7 @@ public class BiomeCambrianSeaSiphusauctum extends ElementsPNCambrianMod.ModEleme
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					SPONGE_GENERATOR.generate(worldIn, rand, pos.add(j, l, k), 1, 255, 0, 255, BlockDarkPinkSponge.block);
+					SPONGE_GENERATOR.generate(worldIn, rand, pos.add(j, l, k), 1, 255, 35, 255, BlockDarkPinkSponge.block);
 				}
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
@@ -140,7 +140,7 @@ public class BiomeCambrianSeaSiphusauctum extends ElementsPNCambrianMod.ModEleme
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					SPONGE_SIDEWAYS_GENERATOR.generate(worldIn, rand, pos.add(j, l, k), 1, 255, 0, 255, BlockDarkPinkSponge.block);
+					SPONGE_SIDEWAYS_GENERATOR.generate(worldIn, rand, pos.add(j, l, k), 1, 255, 35, 255, BlockDarkPinkSponge.block);
 				}
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
@@ -149,7 +149,7 @@ public class BiomeCambrianSeaSiphusauctum extends ElementsPNCambrianMod.ModEleme
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockDinomischus.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 4, 255, 0, 255);
+					STATIC_GENERATOR.generate(BlockDinomischus.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 4, 255, 35, 255);
 				}
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
@@ -158,7 +158,7 @@ public class BiomeCambrianSeaSiphusauctum extends ElementsPNCambrianMod.ModEleme
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_SIDEWAYS_GENERATOR.generate(BlockDinomischus.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 4, 255, 0, 255);
+					STATIC_SIDEWAYS_GENERATOR.generate(BlockDinomischus.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 4, 255, 35, 255);
 				}
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
@@ -167,7 +167,7 @@ public class BiomeCambrianSeaSiphusauctum extends ElementsPNCambrianMod.ModEleme
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = ChunkGenSpawner.getTopSolidBlock(pos.add(j, 0, k), worldIn).getY() + 1;
-					STATIC_GENERATOR.generate(BlockPirania.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 255, 0, 255);
+					STATIC_GENERATOR.generate(BlockPirania.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 255, 35, 255);
 				}
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
@@ -176,7 +176,7 @@ public class BiomeCambrianSeaSiphusauctum extends ElementsPNCambrianMod.ModEleme
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockChoia.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 255, 0, 255);
+					STATIC_GENERATOR.generate(BlockChoia.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 255, 35, 255);
 				}
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
@@ -185,7 +185,7 @@ public class BiomeCambrianSeaSiphusauctum extends ElementsPNCambrianMod.ModEleme
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockChancelloria.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 2, 255, 0, 255);
+					STATIC_GENERATOR.generate(BlockChancelloria.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 2, 255, 35, 255);
 				}
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
@@ -194,7 +194,7 @@ public class BiomeCambrianSeaSiphusauctum extends ElementsPNCambrianMod.ModEleme
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = ChunkGenSpawner.getTopSolidBlock(pos.add(j, 0, k), worldIn).getY() + 1;
-					STATIC_GENERATOR.generate(BlockSiphusauctum.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 2, 255, 0, 255);
+					STATIC_GENERATOR.generate(BlockSiphusauctum.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 2, 255, 35, 255);
 				}
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
@@ -203,7 +203,7 @@ public class BiomeCambrianSeaSiphusauctum extends ElementsPNCambrianMod.ModEleme
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = ChunkGenSpawner.getTopSolidBlock(pos.add(j, 0, k), worldIn).getY() + ii;
-					STATIC_SIDEWAYS_GENERATOR.generate(BlockSiphusauctum.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 2, 255, 0, 255);
+					STATIC_SIDEWAYS_GENERATOR.generate(BlockSiphusauctum.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 2, 255, 35, 255);
 				}
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
@@ -212,7 +212,7 @@ public class BiomeCambrianSeaSiphusauctum extends ElementsPNCambrianMod.ModEleme
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockBrachiopodMicromitra.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 255, 0, 255);
+					STATIC_GENERATOR.generate(BlockBrachiopodMicromitra.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 255, 35, 255);
 				}
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
@@ -221,7 +221,7 @@ public class BiomeCambrianSeaSiphusauctum extends ElementsPNCambrianMod.ModEleme
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_SIDEWAYS_GENERATOR.generate(BlockBrachiopodMicromitra.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 255, 0, 255);
+					STATIC_SIDEWAYS_GENERATOR.generate(BlockBrachiopodMicromitra.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 255, 35, 255);
 				}
 
 
@@ -231,7 +231,7 @@ public class BiomeCambrianSeaSiphusauctum extends ElementsPNCambrianMod.ModEleme
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockConulariidBrown.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 255, 0, 255);
+					STATIC_GENERATOR.generate(BlockConulariidBrown.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 255, 35, 255);
 				}
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
@@ -240,7 +240,7 @@ public class BiomeCambrianSeaSiphusauctum extends ElementsPNCambrianMod.ModEleme
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockConulariidMagenta.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 255, 0, 255);
+					STATIC_GENERATOR.generate(BlockConulariidMagenta.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 255, 35, 255);
 				}
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))

@@ -62,6 +62,7 @@ public class BiomeCambrianAbyssal extends ElementsPNCambrianMod.ModElement {
 		protected static final WorldGenStromatoliteReefCambrian REEF_GENERATOR = new WorldGenStromatoliteReefCambrian();
 		protected static final WorldGenThrombolite THROMBOLITE_GENERATOR = new WorldGenThrombolite();
 		protected static final WorldGenReef REEF_GENERATOR_ARCHAEOCYATHA = new WorldGenReef();
+		protected static final WorldGenAddSomethingToTopSolidBlock LITTER = new WorldGenAddSomethingToTopSolidBlock();
 		protected static final WorldGenSingleStaticInWaterUpwards STATIC_GENERATOR = new WorldGenSingleStaticInWaterUpwards();
 		protected static final WorldGenSingleStaticInWaterRotational STATIC_ROTATIONAL_GENERATOR = new WorldGenSingleStaticInWaterRotational();
 		protected static final WorldGenSingleStaticInWaterSideways STATIC_SIDEWAYS_GENERATOR = new WorldGenSingleStaticInWaterSideways();
@@ -139,6 +140,16 @@ public class BiomeCambrianAbyssal extends ElementsPNCambrianMod.ModElement {
 								&& (worldIn.getBlockState(pos1.up(2)).getMaterial() == Material.WATER)
 				) {
 					REEF_GENERATOR_ARCHAEOCYATHA.generate(worldIn, rand, pos1, radius, BlockArchaeocyatha.block.getDefaultState());
+				}
+			}
+
+			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS)) {
+				if (rand.nextInt(6) == 0) {
+					for (int i = 0; i < 6; ++i) {
+						if (rand.nextInt(6) == 0) {
+							LITTER.generate(worldIn, rand, pos.add(16, 0, 16), 0, 35, BlockSulphurVent.block.getDefaultState(), 0);
+						}
+					}
 				}
 			}
 

@@ -14,7 +14,7 @@ public class GenLayerCambrianRiverMixDeltaSpecial extends GenLayer
     //Creeks to use:
     public Biome CAMBRIAN_CREEK_ESTUARY = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_foreshore"));
     public int CAMBRIAN_CREEK_ESTUARY_ID = Biome.getIdForBiome(CAMBRIAN_CREEK_ESTUARY);
-    public Biome CAMBRIAN_ESTUARY = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_foreshore_dry"));
+    public Biome CAMBRIAN_ESTUARY = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:cambrian_sea_reefs"));
     public int CAMBRIAN_ESTUARY_ID = Biome.getIdForBiome(CAMBRIAN_ESTUARY);
 
     public GenLayerCambrianRiverMixDeltaSpecial(long p_i2129_1_, GenLayer p_i2129_3_, GenLayer p_i2129_4_)
