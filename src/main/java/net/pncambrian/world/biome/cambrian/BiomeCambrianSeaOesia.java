@@ -21,7 +21,7 @@ import java.util.Random;
 
 @ElementsPNCambrianMod.ModElement.Tag
 public class BiomeCambrianSeaOesia extends ElementsPNCambrianMod.ModElement {
-	@GameRegistry.ObjectHolder("lepidodendron:cambrian_sea_oesia")
+	@GameRegistry.ObjectHolder("lepidodendron:cambrian_sea_reefs")
 	public static final BiomeGenCustom biome = null;
 	public BiomeCambrianSeaOesia(ElementsPNCambrianMod instance) {
 		super(instance, 1591);
@@ -41,7 +41,7 @@ public class BiomeCambrianSeaOesia extends ElementsPNCambrianMod.ModElement {
 	static class BiomeGenCustom extends BiomeCambrian {
 		public BiomeGenCustom() {
 			super(new BiomeProperties("Cambrian Colonies").setRainfall(0.9F).setBaseHeight(-0.15F).setHeightVariation(0.255F).setTemperature(0.9F));
-			setRegistryName("lepidodendron:cambrian_sea_oesia");
+			setRegistryName("lepidodendron:cambrian_sea_reefs");
 			topBlock = Blocks.SAND.getStateFromMeta(0);
 			fillerBlock = BlockSandstoneBlack.block.getDefaultState();
 			decorator.treesPerChunk = -999;
