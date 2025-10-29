@@ -3,6 +3,7 @@ package net.pncambrian.world.biome.cambrian;
 
 import net.lepidodendron.block.*;
 import net.lepidodendron.util.EnumBiomeTypeCambrian;
+import net.lepidodendron.world.biome.ChunkGenSpawner;
 import net.lepidodendron.world.biome.cambrian.BiomeCambrian;
 import net.pncambrian.ElementsPNCambrianMod;
 import net.lepidodendron.world.gen.*;
@@ -39,7 +40,7 @@ public class BiomeCambrianEstuaryHelper extends ElementsPNCambrianMod.ModElement
 
 	static class BiomeGenCustom extends BiomeCambrian {
 		public BiomeGenCustom() {
-			super(new BiomeProperties("Cambrian Estuary Lagoons").setRainfall(0.9F).setBaseHeight(1.265F).setHeightVariation(0.0F).setTemperature(0.9F));
+			super(new BiomeProperties("Cambrian Lagoonal Pools").setRainfall(0.9F).setBaseHeight(1.265F).setHeightVariation(0.0F).setTemperature(0.9F));
 																				/// 0.65F + 0.4
 			setRegistryName("lepidodendron:cambrian_estuary_helper");
 			topBlock = BlockSandBlack.block.getDefaultState();
@@ -64,7 +65,6 @@ public class BiomeCambrianEstuaryHelper extends ElementsPNCambrianMod.ModElement
 		protected static final WorldGenToxicMud TOXIC_MUD_GENERATOR = new WorldGenToxicMud();
 		protected static final WorldGenStromatoliteReefCambrian REEF_GENERATOR = new WorldGenStromatoliteReefCambrian();
 		protected static final WorldGenThrombolite THROMBOLITE_GENERATOR = new WorldGenThrombolite();
-		protected static final WorldGenReef REEF_GENERATOR_ARCHAEOCYATHA = new WorldGenReef();
 		protected static final WorldGenBacterialCrust CRUST_GENERATOR = new WorldGenBacterialCrust();
 		protected static final WorldGenSingleStaticInWaterUpwards STATIC_GENERATOR = new WorldGenSingleStaticInWaterUpwards();
 		protected static final WorldGenSingleStaticInWaterRotational STATIC_ROTATIONAL_GENERATOR = new WorldGenSingleStaticInWaterRotational();
@@ -84,14 +84,10 @@ public class BiomeCambrianEstuaryHelper extends ElementsPNCambrianMod.ModElement
 
 			if (Math.random() > 0.8 && net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.ROCK))
 			{
-				//int i = rand.nextInt(2);
-				//for (int j = 0; j < i; ++j)
-				//{
 					int k = rand.nextInt(16) + 8;
 					int l = rand.nextInt(16) + 8;
 					BlockPos blockpos = worldIn.getHeight(pos.add(k, 0, l));
 					THROMBOLITE_GENERATOR.generate(worldIn, rand, blockpos);
-				//}
 			}
 
 	        if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.ROCK))
@@ -159,40 +155,13 @@ public class BiomeCambrianEstuaryHelper extends ElementsPNCambrianMod.ModElement
 				}
 			}
 
-			if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.ROCK))
-				for (int i = 0; i < 8; ++i)
-				{
-					int radius = 8;
-					int j;
-					int k;
-					if (radius < 10) {
-						j = 16 + (int)Math.floor(rand.nextInt(16 - radius - 6)/2) - (int)Math.floor(rand.nextInt(16 - radius - 6)/2);
-						k = 16 + (int)Math.floor(rand.nextInt(16 - radius - 6)/2) - (int)Math.floor(rand.nextInt(16 - radius - 6)/2);
-					}
-					else {
-						radius = 10;
-						j = 16;
-						k = 16;
-					}
-					int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
-					BlockPos pos1 = pos.add(j, l, k);
-					if (
-							(pos1.getY() < worldIn.getSeaLevel() - 5)
-									&& (worldIn.getBlockState(pos1).getMaterial() == Material.WATER)
-									&& (worldIn.getBlockState(pos1.up()).getMaterial() == Material.WATER)
-									&& (worldIn.getBlockState(pos1.up(2)).getMaterial() == Material.WATER)
-					) {
-						REEF_GENERATOR_ARCHAEOCYATHA.generate(worldIn, rand, pos1, radius, BlockArchaeocyatha.block.getDefaultState());
-					}
-				}
-
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
 				for (int ii = 0; ii < 18; ++ii)
 				{
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockAllonnia.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 30, 0, 255);
+					STATIC_GENERATOR.generate(BlockAllonnia.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 30, 35, 255);
 				}
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
@@ -210,25 +179,53 @@ public class BiomeCambrianEstuaryHelper extends ElementsPNCambrianMod.ModElement
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_SIDEWAYS_GENERATOR.generate(BlockBrachiopodOrthid.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 2, 24, 0, 255);
+					STATIC_SIDEWAYS_GENERATOR.generate(BlockBrachiopodOrthid.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 2, 24, 35, 255);
 				}
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 12; ++ii)
+				for (int ii = 0; ii < 20; ++ii)
 				{
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					SPONGE_GENERATOR.generate(worldIn, rand, pos.add(j, l, k), 1, 30, 0, 255, null);
+					STATIC_GENERATOR.generate(BlockBrachiopodMicromitra.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 255, 35, 255);
 				}
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 12; ++ii)
+				for (int ii = 0; ii < 20; ++ii)
 				{
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					SPONGE_SIDEWAYS_GENERATOR.generate(worldIn, rand, pos.add(j, l, k), 1, 30, 0, 255, null);
+					STATIC_SIDEWAYS_GENERATOR.generate(BlockBrachiopodMicromitra.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 255, 35, 255);
+				}
+
+			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
+				for (int ii = 0; ii < 16; ++ii) {
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
+					if (worldIn.getBiome(pos.add(j, 0, k)) == this) {
+						STATIC_GENERATOR.generate(BlockChoia.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 60, 35, 255);
+					}
+				}
+
+			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
+				for (int ii = 0; ii < 20; ++ii)
+				{
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
+					STATIC_GENERATOR.generate(BlockConulariidBrown.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 100, 35, 255);
+				}
+
+			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
+				for (int ii = 0; ii < 20; ++ii)
+				{
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
+					STATIC_GENERATOR.generate(BlockConulariidMagenta.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 100, 35, 255);
 				}
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
@@ -237,16 +234,7 @@ public class BiomeCambrianEstuaryHelper extends ElementsPNCambrianMod.ModElement
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockCastericystis.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 15, 0, 255);
-				}
-
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 13; ++ii)
-				{
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockCotyledion.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 80, 0, 255);
+					STATIC_GENERATOR.generate(BlockCotyledion.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 80, 35, 255);
 				}
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
@@ -255,25 +243,16 @@ public class BiomeCambrianEstuaryHelper extends ElementsPNCambrianMod.ModElement
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockDinomischus.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 80, 0, 255);
+					STATIC_GENERATOR.generate(BlockDinomischus.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 80, 35, 255);
 				}
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 36; ++ii)
+				for (int ii = 0; ii < 18; ++ii)
 				{
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_SIDEWAYS_GENERATOR.generate(BlockDinomischus.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 80, 0, 255);
-				}
-
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 16; ++ii)
-				{
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockEchmatocrinus.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 30, 0, 255);
+					STATIC_SIDEWAYS_GENERATOR.generate(BlockDinomischus.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 80, 35, 255);
 				}
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
@@ -282,43 +261,34 @@ public class BiomeCambrianEstuaryHelper extends ElementsPNCambrianMod.ModElement
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockFacivermis.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 15, 0, 255);
+					STATIC_GENERATOR.generate(BlockFacivermis.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 15, 35, 255);
 				}
 
+//			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
+//				for (int ii = 0; ii < 12; ++ii)
+//				{
+//					int j = rand.nextInt(16) + 8;
+//					int k = rand.nextInt(16) + 8;
+//					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
+//					SPONGE_GENERATOR.generate(worldIn, rand, pos.add(j, l, k), 1, 30, 35, 255, null);
+//				}
+//
+//			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
+//				for (int ii = 0; ii < 12; ++ii)
+//				{
+//					int j = rand.nextInt(16) + 8;
+//					int k = rand.nextInt(16) + 8;
+//					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
+//					SPONGE_SIDEWAYS_GENERATOR.generate(worldIn, rand, pos.add(j, l, k), 1, 30, 35, 255, null);
+//				}
+
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 56; ++ii)
+				for (int ii = 0; ii < 10; ++ii)
 				{
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_ROTATIONAL_GENERATOR.generate(BlockGangtoucunia.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 15, 0, 255);
-				}
-
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 12; ++ii)
-				{
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockHerpetogaster.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 25, 0, 255);
-				}
-
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 24; ++ii)
-				{
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_SIDEWAYS_GENERATOR.generate(BlockHerpetogaster.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 25, 0, 255);
-				}
-
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 16; ++ii)
-				{
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockLepidocystis.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 10, 40, 0, 255);
+					STATIC_GENERATOR.generate(BlockGirvanella.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 100, 35, 255);
 				}
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
@@ -327,207 +297,7 @@ public class BiomeCambrianEstuaryHelper extends ElementsPNCambrianMod.ModElement
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockPirania.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 20, 0, 255);
-				}
-
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 17; ++ii)
-				{
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockRedAlgaeMat.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 30, 0, 255);
-				}
-
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 27; ++ii)
-				{
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockShankouclava.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 30, 0, 255);
-				}
-
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 10; ++ii)
-				{
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockStromatocystites.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 40, 0, 255);
-				}
-
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 20; ++ii)
-				{
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_SIDEWAYS_GENERATOR.generate(BlockStromatocystites.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 40, 0, 255);
-				}
-
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 20; ++ii)
-				{
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockChoia.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 60, 0, 255);
-				}
-
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 10; ++ii)
-				{
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockCrumillospongia.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 40, 0, 255);
-				}
-
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 30; ++ii)
-				{
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_SIDEWAYS_GENERATOR.generate(BlockCrumillospongia.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 10, 40, 0, 255);
-				}
-
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 17; ++ii)
-				{
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockGreenAlgaeMat.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 15, 0, 255);
-				}
-
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 17; ++ii)
-				{
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockGreenSproutingAlgae.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 15, 0, 255);
-				}
-
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 17; ++ii)
-				{
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockHelicocystis.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 30, 0, 255);
-				}
-
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 10; ++ii)
-				{
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockLyracystis.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 30, 0, 255);
-				}
-
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 20; ++ii)
-				{
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_SIDEWAYS_GENERATOR.generate(BlockLyracystis.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 30, 0, 255);
-				}
-
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 10; ++ii)
-				{
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockChancelloria.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 30, 0, 255);
-				}
-
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 10; ++ii)
-				{
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockSiphusauctum.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 30, 0, 255);
-				}
-
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 20; ++ii)
-				{
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_SIDEWAYS_GENERATOR.generate(BlockSiphusauctum.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 30, 0, 255);
-				}
-
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 19; ++ii) {
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					if (worldIn.getBiome(pos.add(j, l, k)) == this) {
-						STATIC_GENERATOR.generate(BlockPalaeodiphasia.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 10, 0, 255);
-					}
-				}
-
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 38; ++ii) {
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					if (worldIn.getBiome(pos.add(j, l, k)) == this) {
-						STATIC_SIDEWAYS_GENERATOR.generate(BlockPalaeodiphasia.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 10, 0, 255);
-					}
-				}
-
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 20; ++ii)
-				{
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockOesia.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 100, 0, 255);
-				}
-
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 20; ++ii)
-				{
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockConulariidBrown.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 100, 0, 255);
-				}
-
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 20; ++ii)
-				{
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockConulariidMagenta.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 100, 0, 255);
-				}
-
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 20; ++ii)
-				{
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockDictyonema.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 100, 0, 255);
-				}
-
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 20; ++ii)
-				{
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_SIDEWAYS_GENERATOR.generate(BlockDictyonema.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 100, 0, 255);
+					STATIC_GENERATOR.generate(BlockShankouclava.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 30, 35, 255);
 				}
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
@@ -536,18 +306,81 @@ public class BiomeCambrianEstuaryHelper extends ElementsPNCambrianMod.ModElement
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_ROTATIONAL_GENERATOR.generate(BlockThaumaptilon.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 100, 0, 255);
+					STATIC_ROTATIONAL_GENERATOR.generate(BlockStromatoveris.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 100, 35, 255);
 				}
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
-				for (int ii = 0; ii < 22; ++ii)
+				for (int ii = 0; ii < 20; ++ii)
 				{
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_ROTATIONAL_GENERATOR.generate(BlockStromatoveris.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 100, 0, 255);
+					STATIC_GENERATOR.generate(BlockVetulocystis.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 255, 35, 255);
 				}
 
+			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
+				for (int ii = 0; ii < 20; ++ii)
+				{
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
+					STATIC_SIDEWAYS_GENERATOR.generate(BlockVetulocystis.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 255, 35, 255);
+				}
+
+			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
+				for (int ii = 0; ii < 28; ++ii)
+				{
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
+					STATIC_GENERATOR.generate(BlockXianguangia.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 4, 255, 35, 255);
+				}
+
+			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
+				for (int ii = 0; ii < 28; ++ii)
+				{
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
+					STATIC_SIDEWAYS_GENERATOR.generate(BlockXianguangia.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 4, 255, 35, 255);
+				}
+
+			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
+				for (int ii = 0; ii < 17; ++ii) {
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
+					if (worldIn.getBiome(pos.add(j, 0, k)) == this) {
+						STATIC_GENERATOR.generate(BlockRedAlgaeMat.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 30, 35, 255);
+					}
+				}
+
+			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
+				for (int ii = 0; ii < 3; ++ii)
+				{
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = ChunkGenSpawner.getTopSolidBlock(pos.add(j, 0, k), worldIn).getY() + 1;
+					STATIC_GENERATOR.generate(BlockGreenAlgaeMat.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 15, 35, 255);
+				}
+
+			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
+				for (int ii = 0; ii < 1; ++ii)
+				{
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
+					STATIC_GENERATOR.generate(BlockTawuia.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 15, 35, 255);
+				}
+
+			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
+				for (int ii = 0; ii < 17; ++ii)
+				{
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
+					STATIC_GENERATOR.generate(BlockGreenSproutingAlgae.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 15, 35, 255);
+				}
 
 			super.decorate(worldIn, rand, pos);
 	    }

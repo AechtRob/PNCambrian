@@ -736,6 +736,31 @@ public class ChunkProviderCambrian implements IChunkGenerator {
             }
         }
 
+        //Lagoons:
+        if (biome == BiomeCambrianEstuary.biome || biome == BiomeCambrianEstuaryHelper.biome) {
+            if (posY <= 35 + rand.nextInt(6)) {
+                //copy abyssal for this
+                iblockstate = BlockLavaRock.block.getDefaultState();
+                if (rand.nextInt(4) == 0) {
+                    iblockstate = BlockSandBlack.block.getDefaultState();
+                }
+                if (rand.nextInt(4) == 0) {
+                    iblockstate = BlockLavaCobble.block.getDefaultState();
+                }
+                if (rand.nextInt(4) == 0) {
+                    iblockstate = BlockSandBlackWavy.block.getDefaultState();
+                }
+                if (rand.nextInt(24) == 0) {
+                    iblockstate = Blocks.STONE.getDefaultState();
+                }
+                return iblockstate;
+            }
+            iblockstate = BlockSandBlackWavy.block.getDefaultState();
+            if (rand.nextInt(6) == 0) {
+                iblockstate = BlockLavaCobbleMossy.block.getDefaultState();
+            }
+        }
+
         //Deep Ocean:
         if (biome == BiomeCambrianSea.biome) {
             if (posY <= 35 + rand.nextInt(6)) {
