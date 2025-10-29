@@ -628,7 +628,6 @@ public class ChunkProviderCambrian implements IChunkGenerator {
     public static IBlockState getIBlockstateForWater(String biomeResID, int posY, IBlockState iblockstate, Random rand)
     {
 
-
         if (posY <= 35 + rand.nextInt(6)) {
             //copy abyssal for this
             iblockstate = BlockLavaRock.block.getDefaultState();
@@ -717,7 +716,7 @@ public class ChunkProviderCambrian implements IChunkGenerator {
         if (biome == BiomeCambrianSea.biome) {
 
         }
-        
+
         //Reef/Shallow Ocean:
         if (biome == BiomeCambrianSeaShore.biome) {
             if (posY <= 35 + rand.nextInt(6)) {
