@@ -708,10 +708,10 @@ public class ChunkProviderCambrian implements IChunkGenerator {
             if (rand.nextInt(2) == 0) {
                 iblockstate = BlockSandWavy.block.getDefaultState();
             }
-            if (rand.nextInt(14) == 0) {
+            if (rand.nextInt(4) == 0) {
                 iblockstate = BlockCoarseSandyDirtGrey.block.getDefaultState();
             }
-            if (rand.nextInt(16) == 0) {
+            if (rand.nextInt(8) == 0) {
                 iblockstate = BlockCoarseSiltyDirt.block.getDefaultState();
             }
             if (rand.nextInt(32) == 0) {
@@ -725,6 +725,9 @@ public class ChunkProviderCambrian implements IChunkGenerator {
             }
             if (rand.nextInt(14) == 0) {
                 iblockstate = Blocks.STONE.getDefaultState();
+            }
+            if (rand.nextInt(6) == 0) {
+                iblockstate = BlockClayBrown.block.getDefaultState();
             }
         }
 
