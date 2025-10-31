@@ -269,7 +269,7 @@ public class BiomeCambrianSeaOesia extends ElementsPNCambrianMod.ModElement {
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = ChunkGenSpawner.getTopSolidBlock(pos.add(j, 0, k), worldIn).getY() + 1;
-					STATIC_GENERATOR.generate(BlockOesia.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 255, 35, 255);
+					STATIC_ROTATIONAL_GENERATOR.generate(BlockOesia.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 255, 35, 255);
 				}
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))

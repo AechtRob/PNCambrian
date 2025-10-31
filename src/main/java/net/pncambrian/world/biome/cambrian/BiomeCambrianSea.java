@@ -314,7 +314,7 @@ public class BiomeCambrianSea extends ElementsPNCambrianMod.ModElement {
 					int j = rand.nextInt(16) + 8;
 					int k = rand.nextInt(16) + 8;
 					int l = rand.nextInt(worldIn.getSeaLevel() + 25);
-					STATIC_GENERATOR.generate(BlockOesia.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 255, 35, 255);
+					STATIC_ROTATIONAL_GENERATOR.generate(BlockOesia.block.getDefaultState(), worldIn, rand, pos.add(j, l, k), 1, 255, 35, 255);
 				}
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.GRASS))
